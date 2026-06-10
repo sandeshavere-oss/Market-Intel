@@ -32,6 +32,7 @@
         "options": {}
       },
       "id": "node-rss-livemint",
+      "onError": "continueRegularOutput",
       "name": "RSS Livemint",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
@@ -87,6 +88,7 @@
         "options": {}
       },
       "id": "node-rss-et",
+      "onError": "continueRegularOutput",
       "name": "RSS Economic Times",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
@@ -142,6 +144,7 @@
         "options": {}
       },
       "id": "node-rss-bl",
+      "onError": "continueRegularOutput",
       "name": "RSS BusinessLine",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
@@ -197,6 +200,7 @@
         "options": {}
       },
       "id": "node-rss-ettel",
+      "onError": "continueRegularOutput",
       "name": "RSS ET Telecom",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
@@ -252,6 +256,7 @@
         "options": {}
       },
       "id": "node-rss-mc",
+      "onError": "continueRegularOutput",
       "name": "RSS Moneycontrol",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
@@ -307,6 +312,7 @@
         "options": {}
       },
       "id": "node-rss-cnbc",
+      "onError": "continueRegularOutput",
       "name": "RSS CNBC TV18",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
