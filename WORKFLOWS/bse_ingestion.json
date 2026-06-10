@@ -1,0 +1,319 @@
+{
+  "name": "BSE Announcements Ingestion",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger-id",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -990,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            },
+            {}
+          ]
+        }
+      },
+      "id": "schedule-trigger-id",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -990,
+        -350
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.bseindia.com/data/xml/notices.xml",
+        "options": {}
+      },
+      "id": "bse-announcements-rss-id",
+      "name": "BSE Announcements",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        -270
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "norm-article-id",
+              "name": "article_id",
+              "value": "={{$json.link || $json.guid || $json.id || $json.title}}",
+              "type": "string"
+            },
+            {
+              "id": "norm-title",
+              "name": "title",
+              "value": "={{$json.title}}",
+              "type": "string"
+            },
+            {
+              "id": "norm-content",
+              "name": "content",
+              "value": "={{$json.content || $json.contentSnippet || $json.description || $json.title}}",
+              "type": "string"
+            },
+            {
+              "id": "norm-link",
+              "name": "link",
+              "value": "={{$json.link || $json.guid || $json.id}}",
+              "type": "string"
+            },
+            {
+              "id": "norm-source-feed",
+              "name": "source_feed",
+              "value": "={{$json.feedTitle || $json.creator || $json.isoDate || \"RSS\"}}",
+              "type": "string"
+            },
+            {
+              "id": "norm-published-at",
+              "name": "published_at",
+              "value": "={{$json.pubDate || $json.isoDate || new Date().toISOString()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "normalize-fields-id",
+      "name": "Normalize Article Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -300,
+        -270
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT '{{ $json.article_id }}' AS article_id, '{{ $json.title.replace(/'/g, \"''\").replace(/[\\r\\n]/g, \" \") }}' AS title, '{{ $json.content.replace(/'/g, \"''\").replace(/[\\r\\n]/g, \" \") }}' AS content, '{{ $json.link }}' AS link, '{{ $json.source_feed }}' AS source_feed, '{{ $json.published_at }}' AS published_at, COUNT(*) AS count FROM corporate_events WHERE article_id = '{{ $json.article_id }}';"
+      },
+      "id": "check-processed-db-id",
+      "name": "Check Processed Article",
+      "type": "n8n-nodes-base.sqlite",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -270
+      ],
+      "notes": "Set SQLite database path to D:\\MARKET_INTEL\\DATABASE\\market_intel.db"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "if-new-article-count",
+              "leftValue": "={{$json.count}}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-new-article-id",
+      "name": "IF New Article",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        300,
+        -270
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const title = ($json.title || \"\").toLowerCase();\nlet category = \"General Announcement\";\n\nconst mappings = [\n  {\n    category: \"Financial Results\",\n    patterns: [\"quarterly results\", \"q1 results\", \"q2 results\", \"q3 results\", \"q4 results\", \"financial results\", \"annual results\", \"unaudited results\", \"audited results\"]\n  },\n  {\n    category: \"Board Meeting\",\n    patterns: [\"board meeting\", \"board of directors\", \"board meeting notice\"]\n  },\n  {\n    category: \"Shareholder Meeting\",\n    patterns: [\"agm\", \"annual general meeting\", \"egm\", \"extraordinary general meeting\", \"notice of agm\", \"notice of egm\"]\n  },\n  {\n    category: \"Dividend\",\n    patterns: [\"dividend\", \"interim dividend\", \"final dividend\", \"special dividend\"]\n  },\n  {\n    category: \"Buyback\",\n    patterns: [\"buyback\", \"buy back\", \"share repurchase\"]\n  },\n  {\n    category: \"M&A\",\n    patterns: [\"merger\", \"acquisition\", \"amalgamation\", \"demerger\", \"scheme of arrangement\", \"takeover\", \"open offer\"]\n  },\n  {\n    category: \"Capital Raise\",\n    patterns: [\"qip\", \"qualified institutional placement\", \"fpo\", \"follow-on\", \"rights issue\", \"ncd\", \"non-convertible debentures\"]\n  },\n  {\n    category: \"Order Win\",\n    patterns: [\"order win\", \"order received\", \"contract awarded\", \"letter of intent\", \"loi received\", \"secured order\", \"new order\"]\n  },\n  {\n    category: \"Regulatory\",\n    patterns: [\"insider trading\", \"insider dealing\", \"sast regulations\", \"substantial acquisition\"]\n  }\n];\n\nfor (const map of mappings) {\n  let matched = false;\n  for (const pattern of map.patterns) {\n    if (title.includes(pattern)) {\n      category = map.category;\n      matched = true;\n      break;\n    }\n  }\n  if (matched) break;\n}\n\n$json.event_category = category;\nreturn $json;"
+      },
+      "id": "event-category-classify-id",
+      "name": "Event Category",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        -270
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral:7b\",\n  \"prompt\": \"You are analyzing a BSE (Bombay Stock Exchange) corporate announcement.\\nExtract the following information and return ONLY a valid JSON object.\\nNo explanation. No markdown. No extra text. Only JSON.\\n\\nRequired JSON format:\\n{\\n  \\\"company_name\\\": \\\"exact company name from announcement\\\",\\n  \\\"event_type\\\": \\\"brief description of the event (max 5 words)\\\",\\n  \\\"sentiment\\\": \\\"Positive or Negative or Neutral\\\",\\n  \\\"impact_score\\\": <integer 1-10>\\n}\\n\\nIf any field cannot be determined, use \\\"Unknown\\\" for strings and 5 for impact_score.\\n\\nANNOUNCEMENT TITLE: {{ $json.title }}\\nANNOUNCEMENT CONTENT: {{ $json.content }}\\n\",\n  \"stream\": false,\n  \"options\": {\n    \"temperature\": 0,\n    \"num_predict\": 100\n  }\n}",
+        "options": {}
+      },
+      "id": "ollama-http-request-id",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        -270
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let rawResponse = \"\";\nif ($json.response) {\n  rawResponse = $json.response.trim();\n} else if ($json.body && $json.body.response) {\n  rawResponse = $json.body.response.trim();\n}\n\nlet company_name = \"Unknown\";\nlet event_type = \"Unknown\";\nlet sentiment = \"Unknown\";\nlet impact_score = 5;\n\nfunction cleanSentiment(val) {\n  if (!val) return \"Unknown\";\n  const s = val.toString().trim().toLowerCase();\n  if (s.includes(\"pos\")) return \"Positive\";\n  if (s.includes(\"neg\")) return \"Negative\";\n  if (s.includes(\"neu\")) return \"Neutral\";\n  return \"Unknown\";\n}\n\nfunction cleanImpactScore(val) {\n  if (val === undefined || val === null) return 5;\n  const match = val.toString().match(/\\d+/);\n  if (match) {\n    const score = parseInt(match[0], 10);\n    return isNaN(score) ? 5 : score;\n  }\n  return 5;\n}\n\ntry {\n  let jsonStr = rawResponse;\n  const codeBlockMatch = rawResponse.match(/```(?:json)?\\s*([\\s\\S]*?)\\s*```/i);\n  if (codeBlockMatch) {\n    jsonStr = codeBlockMatch[1];\n  }\n  \n  const firstBrace = jsonStr.indexOf('{');\n  const lastBrace = jsonStr.lastIndexOf('}');\n  if (firstBrace !== -1 && lastBrace !== -1) {\n    jsonStr = jsonStr.substring(firstBrace, lastBrace + 1);\n  }\n  \n  const parsed = JSON.parse(jsonStr);\n  \n  if (parsed.company_name) company_name = parsed.company_name.toString().trim();\n  if (parsed.event_type) event_type = parsed.event_type.toString().trim();\n  if (parsed.sentiment) sentiment = cleanSentiment(parsed.sentiment);\n  if (parsed.impact_score !== undefined) impact_score = cleanImpactScore(parsed.impact_score);\n} catch (e) {\n  const companyMatch = rawResponse.match(/\"company_name\"\\s*:\\s*\"([^\"]+)\"/i) || rawResponse.match(/company_name\\s*:\\s*([^\\n,]+)/i);\n  if (companyMatch) company_name = companyMatch[1].replace(/[\"']/g, \"\").trim();\n\n  const eventMatch = rawResponse.match(/\"event_type\"\\s*:\\s*\"([^\"]+)\"/i) || rawResponse.match(/event_type\\s*:\\s*([^\\n,]+)/i);\n  if (eventMatch) event_type = eventMatch[1].replace(/[\"']/g, \"\").trim();\n\n  const sentimentMatch = rawResponse.match(/\"sentiment\"\\s*:\\s*\"([^\"]+)\"/i) || rawResponse.match(/sentiment\\s*:\\s*([^\\n,]+)/i);\n  if (sentimentMatch) sentiment = cleanSentiment(sentimentMatch[1]);\n\n  const impactMatch = rawResponse.match(/\"impact_score\"\\s*:\\s*(\\d+)/i) || rawResponse.match(/impact_score\\s*:\\s*(\\d+)/i);\n  if (impactMatch) impact_score = cleanImpactScore(impactMatch[1]);\n}\n\n// Fetch data from previous node\nconst prevData = $('Event Category').item.json;\n\nreturn {\n  article_id: prevData.article_id || \"\",\n  title: prevData.title || \"\",\n  content: prevData.content || \"\",\n  link: prevData.link || \"\",\n  source_feed: prevData.source_feed || \"BSE\",\n  published_at: prevData.published_at || new Date().toISOString(),\n  event_category: prevData.event_category || \"General Announcement\",\n  company_name: company_name,\n  event_type: event_type,\n  sentiment: sentiment,\n  impact_score: impact_score,\n  raw_response: rawResponse\n};"
+      },
+      "id": "parse-ollama-json-id",
+      "name": "Parse Ollama JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        -270
+      ]
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=python \"D:\\\\MARKET_INTEL\\\\NEWS_ENGINE\\\\save_bse_event.py\" \"{{ String($json.article_id || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.title || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.company_name || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.event_type || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.sentiment || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ $json.impact_score }}\" \"{{ String($json.link || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.published_at || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.raw_response || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\""
+      },
+      "id": "execute-save-bse-id",
+      "name": "Execute Command",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        -270
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "BSE Announcements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "BSE Announcements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BSE Announcements": {
+      "main": [
+        [
+          {
+            "node": "Normalize Article Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Article Fields": {
+      "main": [
+        [
+          {
+            "node": "Check Processed Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Processed Article": {
+      "main": [
+        [
+          {
+            "node": "IF New Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF New Article": {
+      "main": [
+        [
+          {
+            "node": "Event Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Event Category": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Parse Ollama JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Ollama JSON": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "tags": []
+}

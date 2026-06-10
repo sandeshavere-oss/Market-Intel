@@ -1,0 +1,16 @@
+keyword,event_type
+ipo,IPO
+ofs,OFS
+qip,QIP
+block deal,BLOCK_DEAL
+stake sale,STAKE_SALE
+fund raise,FUND_RAISE
+acquisition,ACQUISITION
+merger,MERGER
+joint venture,JOINT_VENTURE
+order win,ORDER_WIN
+contract win,ORDER_WIN
+capacity expansion,CAPACITY_EXPANSION
+plant expansion,CAPACITY_EXPANSION
+approval,REGULATORY_APPROVAL
+sebi approval,REGULATORY_APPROVAL

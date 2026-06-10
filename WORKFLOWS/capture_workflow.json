@@ -1,0 +1,452 @@
+{
+  "name": "Market Intel V2 - Capture Layer",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-manual-trigger",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 260]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-trigger",
+      "name": "Schedule Trigger (Every 1m)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 460]
+    },
+    {
+      "parameters": {
+        "url": "https://www.livemint.com/rss/markets",
+        "options": {}
+      },
+      "id": "node-rss-livemint",
+      "name": "RSS Livemint",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [480, -560]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "lm-title",
+              "name": "title",
+              "value": "={{ $json.title || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "lm-content",
+              "name": "content",
+              "value": "={{ $json.content || $json.contentSnippet || $json.description || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "lm-link",
+              "name": "link",
+              "value": "={{ $json.link || $json.guid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "lm-published",
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "lm-source",
+              "name": "source_feed",
+              "value": "Livemint",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-set-livemint",
+      "name": "Set Livemint",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, -560]
+    },
+    {
+      "parameters": {
+        "url": "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
+        "options": {}
+      },
+      "id": "node-rss-et",
+      "name": "RSS Economic Times",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [480, -336]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "et-title",
+              "name": "title",
+              "value": "={{ $json.title || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "et-content",
+              "name": "content",
+              "value": "={{ $json.content || $json.contentSnippet || $json.description || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "et-link",
+              "name": "link",
+              "value": "={{ $json.link || $json.guid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "et-published",
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "et-source",
+              "name": "source_feed",
+              "value": "Economic Times",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-set-et",
+      "name": "Set Economic Times",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, -336]
+    },
+    {
+      "parameters": {
+        "url": "https://www.thehindubusinessline.com/markets/feeder/default.rss",
+        "options": {}
+      },
+      "id": "node-rss-bl",
+      "name": "RSS BusinessLine",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [480, -112]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bl-title",
+              "name": "title",
+              "value": "={{ $json.title || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "bl-content",
+              "name": "content",
+              "value": "={{ $json.content || $json.contentSnippet || $json.description || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "bl-link",
+              "name": "link",
+              "value": "={{ $json.link || $json.guid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "bl-published",
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "bl-source",
+              "name": "source_feed",
+              "value": "BusinessLine",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-set-bl",
+      "name": "Set BusinessLine",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, -112]
+    },
+    {
+      "parameters": {
+        "url": "https://telecom.economictimes.indiatimes.com/rss/topstories",
+        "options": {}
+      },
+      "id": "node-rss-ettel",
+      "name": "RSS ET Telecom",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [480, 112]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ettel-title",
+              "name": "title",
+              "value": "={{ $json.title || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "ettel-content",
+              "name": "content",
+              "value": "={{ $json.content || $json.contentSnippet || $json.description || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "ettel-link",
+              "name": "link",
+              "value": "={{ $json.link || $json.guid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "ettel-published",
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "ettel-source",
+              "name": "source_feed",
+              "value": "ET Telecom",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-set-ettel",
+      "name": "Set ET Telecom",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, 112]
+    },
+    {
+      "parameters": {
+        "url": "https://www.moneycontrol.com/rss/business.xml",
+        "options": {}
+      },
+      "id": "node-rss-mc",
+      "name": "RSS Moneycontrol",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [480, 336]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "mc-title",
+              "name": "title",
+              "value": "={{ $json.title || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "mc-content",
+              "name": "content",
+              "value": "={{ $json.content || $json.contentSnippet || $json.description || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "mc-link",
+              "name": "link",
+              "value": "={{ $json.link || $json.guid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "mc-published",
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "mc-source",
+              "name": "source_feed",
+              "value": "Moneycontrol",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-set-mc",
+      "name": "Set Moneycontrol",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, 336]
+    },
+    {
+      "parameters": {
+        "url": "https://www.cnbctv18.com/commonfeeds/v1/eng/rss/economy.xml",
+        "options": {}
+      },
+      "id": "node-rss-cnbc",
+      "name": "RSS CNBC TV18",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [480, 560]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cnbc-title",
+              "name": "title",
+              "value": "={{ $json.title || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "cnbc-content",
+              "name": "content",
+              "value": "={{ $json.content || $json.contentSnippet || $json.description || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "cnbc-link",
+              "name": "link",
+              "value": "={{ $json.link || $json.guid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "cnbc-published",
+              "name": "published_at",
+              "value": "={{ $json.isoDate || $json.pubDate || new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "cnbc-source",
+              "name": "source_feed",
+              "value": "CNBC TV18",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-set-cnbc",
+      "name": "Set CNBC TV18",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, 560]
+    },
+    {
+      "parameters": {
+        "numberInputs": 6
+      },
+      "id": "node-merge",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [980, 0]
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=python \"D:\\MARKET_INTEL\\NEWS_ENGINE\\capture_rss.py\" \"{{ String($json.title || '').replace(/[\"\\r\\n]/g, ' ').replace(/\\s+/g, ' ').trim() }}\" \"{{ String($json.content || '').replace(/[\"\\r\\n]/g, ' ').replace(/\\s+/g, ' ').trim() }}\" \"{{ String($json.link || '').replace(/[\"\\r\\n]/g, '').trim() }}\" \"{{ String($json.source_feed || 'RSS').replace(/[\"\\r\\n]/g, '').trim() }}\" \"{{ String($json.published_at || '').replace(/[\"\\r\\n]/g, '').trim() }}\""
+      },
+      "id": "node-execute-capture",
+      "name": "Execute Capture Script",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1220, 0]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          { "node": "RSS Livemint",        "type": "main", "index": 0 },
+          { "node": "RSS Economic Times",  "type": "main", "index": 0 },
+          { "node": "RSS BusinessLine",    "type": "main", "index": 0 },
+          { "node": "RSS ET Telecom",      "type": "main", "index": 0 },
+          { "node": "RSS Moneycontrol",    "type": "main", "index": 0 },
+          { "node": "RSS CNBC TV18",       "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Schedule Trigger (Every 1m)": {
+      "main": [
+        [
+          { "node": "RSS Livemint",        "type": "main", "index": 0 },
+          { "node": "RSS Economic Times",  "type": "main", "index": 0 },
+          { "node": "RSS BusinessLine",    "type": "main", "index": 0 },
+          { "node": "RSS ET Telecom",      "type": "main", "index": 0 },
+          { "node": "RSS Moneycontrol",    "type": "main", "index": 0 },
+          { "node": "RSS CNBC TV18",       "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "RSS Livemint": {
+      "main": [[{ "node": "Set Livemint", "type": "main", "index": 0 }]]
+    },
+    "Set Livemint": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 0 }]]
+    },
+    "RSS Economic Times": {
+      "main": [[{ "node": "Set Economic Times", "type": "main", "index": 0 }]]
+    },
+    "Set Economic Times": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 1 }]]
+    },
+    "RSS BusinessLine": {
+      "main": [[{ "node": "Set BusinessLine", "type": "main", "index": 0 }]]
+    },
+    "Set BusinessLine": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 2 }]]
+    },
+    "RSS ET Telecom": {
+      "main": [[{ "node": "Set ET Telecom", "type": "main", "index": 0 }]]
+    },
+    "Set ET Telecom": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 3 }]]
+    },
+    "RSS Moneycontrol": {
+      "main": [[{ "node": "Set Moneycontrol", "type": "main", "index": 0 }]]
+    },
+    "Set Moneycontrol": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 4 }]]
+    },
+    "RSS CNBC TV18": {
+      "main": [[{ "node": "Set CNBC TV18", "type": "main", "index": 0 }]]
+    },
+    "Set CNBC TV18": {
+      "main": [[{ "node": "Merge", "type": "main", "index": 5 }]]
+    },
+    "Merge": {
+      "main": [[{ "node": "Execute Capture Script", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "staticData": null,
+  "tags": []
+}

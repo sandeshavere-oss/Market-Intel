@@ -1,0 +1,32 @@
+# Secrets and Credentials
+.env
+SOCIAL_ENGINE/twitter_cookies.json
+SOCIAL_ENGINE/raw_cookies.json
+
+# Databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+N8N_DATA/database.sqlite
+
+# Logs
+LOGS/
+*.log
+N8N_DATA/*.log
+
+# Backups
+BACKUP/
+
+# Scratch files
+scratch/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node.js Node Modules
+node_modules/
+N8N_DATA/nodes/node_modules/
