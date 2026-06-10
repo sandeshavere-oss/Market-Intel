@@ -1,7 +1,7 @@
 # Secrets and Credentials
 .env
-SOCIAL_ENGINE/twitter_cookies.json
-SOCIAL_ENGINE/raw_cookies.json
+scripts/social_engine/twitter_cookies.json
+scripts/social_engine/raw_cookies.json
 
 # Databases
 *.db
@@ -11,12 +11,12 @@ SOCIAL_ENGINE/raw_cookies.json
 N8N_DATA/database.sqlite
 
 # Logs
-LOGS/
+logs/
 *.log
 N8N_DATA/*.log
 
-# Backups
-BACKUP/
+# Archive/Backups
+archive/
 
 # Scratch files
 scratch/

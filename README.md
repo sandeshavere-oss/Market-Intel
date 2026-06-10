@@ -1,23 +1,26 @@
 # Market-Intel: Validated Signal Intelligence Platform
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python: 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
-[![Database: SQLite](https://img.shields.io/badge/Database-SQLite-003B57.svg?style=flat&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-[![Streamlit: UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
+<p align="center">
+  <img src="docs/assets/banner.png" alt="Market-Intel Banner" width="100%">
+</p>
 
-Market-Intel is an end-to-end, AI-powered quant intelligence platform that ingests news, financial disclosures, and social media signals to detect high-conviction events. It automates the ingestion, local LLM enrichment, signal validation, and return backtesting against real historical stock data, displaying outcomes in a dynamic Streamlit dashboard.
+<p align="center">
+  <a href="https://github.com/sandeshavere-oss/Market-Intel/actions"><img src="https://img.shields.io/github/actions/workflow/status/sandeshavere-oss/Market-Intel/test.yml?branch=main&style=flat-square" alt="Build Status"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python Version"></a>
+  <a href="https://streamlit.io/"><img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit UI"></a>
+  <a href="https://www.sqlite.org/"><img src="https://img.shields.io/badge/Database-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="Database SQLite"></a>
+  <a href="https://github.com/sandeshavere-oss/Market-Intel/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License MIT"></a>
+</p>
 
 ---
 
-## 🚀 Primary Objective
-> **"Can this system generate signals that outperform the market?"**
-> Market-Intel seeks to isolate pure Alpha ($\alpha$) by tracking mention velocity spikes, correlating them with scheduled corporate events (board meetings, earnings calls, financial disclosures), and benchmarking their performance against the Nifty 50 index.
+Market-Intel is an institutional-grade, AI-driven quantitative events platform that ingests, structures, and validates financial signals. By cross-referencing real-time news mention velocities with scheduled corporate events (earnings releases, board meetings, stock splits), it isolates and measures pure **Alpha ($\alpha$)** relative to the Nifty 50 benchmark.
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture & Workflow
 
-The platform uses a layered architecture, decoupling ingestion, database storage, analysis, and presentation.
+The platform leverages a decoupled, multi-layered architecture:
 
 ```mermaid
 graph TD
@@ -91,196 +94,58 @@ graph TD
 
 ---
 
-## 📂 Repository Structure
+## ✨ Features
 
-The project directory is structured as follows:
+*   **Multi-Source Ingestion**: Pulls raw headlines and attachments from RSS feeds, Twitter/X quant handles, and the Bombay Stock Exchange (BSE) announcements board.
+*   **BSE PDF Parser**: Intercepts PDF announcement links, downloads them, extracts textual data, and runs event classification.
+*   **Local LLM Structuring**: Employs a zero-context Ollama Mistral:7b model locally to extract keywords, companies, and themes, with rule-based fallback paths in case of API timeouts.
+*   **Theme Mapping Safeguards**: Categorizes inputs across 16 frozen core thematic indexes (e.g. AI, Space Economy, EV, Defence) and isolates unrecognized entries in a backlog mapping file.
+*   **Linear Backtesting Validation**: Evaluates signals over 5-day/10-day holding intervals. Executes buy orders strictly at the **next-day Open price** to avoid execution-bias and slippage anomalies.
+*   **Benchmark Index Relative Returns**: Normalizes returns against matching Nifty 50 performance to isolate true outperformance returns ($\alpha$).
+*   **Glassmorphic Streamlit Dashboard**: Sleek dark UI with modern fonts (Outfit), metric tiles, timeline graphs, and a recent signal outcomes panel.
+
+---
+
+## 📂 Repository Organization
 
 ```text
 D:/MARKET_INTEL/
+├── .github/                          # GitHub community & issue templates
 ├── .env                              # API keys, database paths, and environment settings
 ├── .gitignore                        # Git exclusions for secrets, caches, and databases
-├── dashboard.py                      # Main Streamlit web dashboard app
-├── context.md                        # Project roles, goals, and preferred output styles
-├── MARKET_INTEL_ROADMAP.md           # High-level checklist of project phases
+├── CONTRIBUTING.md                   # Open-source contributing guidelines
+├── CHANGELOG.md                      # Changelog following "Keep a Changelog" format
+├── MARKET_INTEL_ROADMAP.md           # Investor-focused developer roadmap
 │
-├── AUDIT/                            # Logs of unclassified articles for manual review
-├── BACKUP/                           # Historical snapshots and code backups (ignored in Git)
+├── dashboard/
+│   └── dashboard.py                  # Main Streamlit web dashboard application
 │
-├── CORPORATE_ENGINE/                 # BSE parsing and corporate filings logic
-│   └── save_corp_data.py             # Parses and saves incoming corporate filing data
+├── data/                             # Project assets and CSV tables
+│   ├── mappings/                     # Entity-to-symbol and keyword-to-theme maps
+│   └── audit/                        # Logs of unclassified articles for manual review
 │
-├── DATABASE/                         # SQLite storage layer (split to prevent file locks)
+├── database/                         # SQLite storage layer (split to prevent file locks)
 │   ├── market_intel.db               # Main database for news, mentions, velocities, signals
 │   ├── price_data.db                 # Historical daily price bars (OHLCV + Adj Close)
 │   ├── corporate_events.db           # Official board meetings, results, and disclosures
 │   └── twitter_intel.db              # Scraped social media tweets and sentiment tags
 │
-├── DOCUMENTATION/                    # Centralized knowledge base
-│   ├── ARCHITECTURE.md               # Architecture details, ER diagrams, workflows
-│   ├── CHANGELOG.md                  # Release log following "Keep a Changelog" format
-│   ├── DATABASE_SCHEMA.md            # Database columns, keys, and row counts
-│   ├── DECISIONS.md                  # Strategic decision records (Decision -> Reason -> Impact)
-│   ├── PROJECT_AUDIT.md              # Detailed file, schema, and workflow audit report
-│   ├── PROJECT_STATUS.md             # Development checklists and layer completion boards
-│   ├── ROADMAP.md                    # Strategic sprints, goals, ROI tasks, and risk registers
-│   └── SESSION_SUMMARY.md            # Chronological run history and log summaries
+├── docs/                             # Project documentation
+│   ├── assets/                       # Images, logo placeholders, and banners
+│   ├── PROJECT_OVERVIEW.md           # Methodology, mention velocities, and ERD logic
+│   ├── DATA_PIPELINE.md              # Ingestion frequency, scraping, and LLM schemas
+│   └── DATABASE_SCHEMA.md            # SQLite column data types and mapping layouts
 │
-├── LOGS/                             # Runtime log outputs (ignored in Git)
+├── logs/                             # Runtime log output directory (ignored in Git)
 │
-├── MAPPINGS/                         # Entity-to-symbol and keyword-to-theme mappings
-│   ├── company_master.csv            # Maps company names and variations to exchange tickers
-│   └── theme_mappings.csv            # Dictates keyword mappings to the 16 frozen themes
-│
-├── NEWS_ENGINE/                      # RSS collection and AI enrichment engines
-│   ├── capture_rss.py                # Periodically pulls articles and writes raw keywords
-│   ├── company_match.py              # Scans texts and resolves mentions to ticker symbols
-│   ├── enrich_news.py                # Connects to local Ollama LLM to tag sentiment and impact
-│   ├── migration.py                  # Script to inject dual timestamps (source vs system)
-│   └── save_keywords.py              # Core insertion script for raw articles
-│
-├── PRICE_ENGINE/                     # Historical stock price loader
-│   └── price_loader.py               # Fetches daily historical Yahoo Finance prices incrementally
-│
-├── SIGNAL_ENGINE/                    # Signal calculation and outcome validator scripts
-│   └── validate_signals.py           # Quantitative backtester checking 5d/10d holds from next-day Open
-│
-├── SOCIAL_ENGINE/                    # Playwright scraper scripts for social media
-│   ├── convert_cookies.py            # Utility to convert browser cookie formats
-│   └── save_tweets.py                # Crawls target social accounts using cookies
+├── scripts/                          # Quantitative analysis and processing engines
+│   ├── news_engine/                  # RSS capture, LLM enrichment, and theme velocity
+│   ├── price_engine/                 # Incremental Yahoo Finance historical price syncer
+│   ├── signal_engine/                # Event signals overlap and Z-score calculation
+│   ├── social_engine/                # Playwright scrapers and Twitter cookie helpers
+│   └── corporate_engine/             # BSE filing notices parsing logic
 │
 └── WORKFLOWS/                        # JSON blueprints for n8n orchestrations
-    ├── bse_ingestion.json            # n8n notice scraper trigger
-    ├── capture_workflow.json         # RSS feed poller trigger
-    ├── daily_briefing_workflow.json  # Runs daily summary briefings
-    ├── enrichment_workflow.json      # Triggers Ollama enrichment calls
-    └── twitter_ingestion.json        # Twitter playwright cron trigger
-```
-
----
-
-## 🛢️ Database Schema & Relationships
-
-The system manages four separate SQLite databases, which are joined logically in the analytics and validation layers:
-
-```mermaid
-erDiagram
-    %% market_intel.db
-    KEYWORDS {
-        int id PK
-        string title
-        string raw_text
-        string keywords
-        string source
-        string created_at
-        string related_companies
-        string theme
-        string link
-        int processed
-        string sentiment
-        string impact_score
-        string source_timestamp
-        string system_timestamp
-    }
-
-    COMPANY_MENTIONS {
-        string company PK
-        string date PK
-        int mentions
-    }
-
-    THEME_VELOCITY {
-        string theme PK
-        string date PK
-        int mentions_today
-        float avg_7d
-        float avg_30d
-        float z_score
-    }
-
-    EVENT_SIGNALS {
-        int id PK
-        string company FK
-        string signal_date
-        float velocity
-        int today_mentions
-        float avg_mentions
-        int event_id FK
-        string event_type
-        string event_date
-        string event_description
-        string signal_strength
-        datetime created_at
-    }
-
-    SIGNAL_PERFORMANCE {
-        int signal_id PK
-        string company FK
-        string signal_date
-        float price_at_signal
-        float price_5d_later
-        float price_10d_later
-        float return_5d
-        float return_10d
-        string outcome
-        datetime updated_at
-    }
-
-    %% price_data.db
-    PRICE_HISTORY {
-        string symbol PK
-        string date PK
-        float open
-        float high
-        float low
-        float close
-        float adj_close
-        int volume
-        datetime created_at
-    }
-
-    %% corporate_events.db
-    CORPORATE_EVENTS {
-        int id PK
-        string company_symbol
-        string event_date
-        string event_type
-        string description
-        string source
-        string guid
-        datetime created_at
-    }
-
-    BOARD_MEETINGS {
-        int id PK
-        string company_symbol
-        string meeting_date
-        string purpose
-        string source
-        string guid
-        datetime created_at
-    }
-
-    FINANCIAL_RESULTS {
-        int id PK
-        string company_symbol
-        string quarter
-        string financial_year
-        float revenue
-        float net_profit
-        string outcome_summary
-        string guid
-        datetime created_at
-    }
-
-    %% In-Memory or Logical Joins
-    KEYWORDS ||--o{ COMPANY_MENTIONS : "aggregates to"
-    KEYWORDS ||--o{ THEME_VELOCITY : "aggregates to"
-    COMPANY_MENTIONS ||--o{ EVENT_SIGNALS : "triggers"
-    CORPORATE_EVENTS ||--o{ EVENT_SIGNALS : "validates"
-    BOARD_MEETINGS ||--o{ EVENT_SIGNALS : "validates"
-    FINANCIAL_RESULTS ||--o{ EVENT_SIGNALS : "validates"
-    EVENT_SIGNALS ||--|| SIGNAL_PERFORMANCE : "evaluates"
-    PRICE_HISTORY ||--o{ SIGNAL_PERFORMANCE : "supplies prices"
 ```
 
 ---
@@ -304,24 +169,31 @@ X_EMAIL=your_x_email
 ### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
-```
-*(Make sure to run playwright install if using the Twitter scraper)*
-```bash
 playwright install
 ```
 
-### 4. Run Streamlit Dashboard
+### 4. Initialize local Ollama model
+Ensure you have [Ollama](https://ollama.com) installed and the Mistral model pulled:
 ```bash
-streamlit run dashboard.py
+ollama run mistral:7b
 ```
 
 ---
 
-## 🔄 Run Pipelines
+## 🚀 Quick Start Guide
 
-Data collection and enrichment pipelines are orchestrated via the `WORKFLOWS/*.json` n8n definitions, or can be triggered manually:
-1. **RSS Ingestion:** Run `python NEWS_ENGINE/capture_rss.py`.
-2. **AI Enrichment:** Run `python NEWS_ENGINE/enrich_news.py` (requires local Ollama server running `mistral:7b` or your chosen model).
-3. **Price Fetcher:** Run `python PRICE_ENGINE/price_loader.py`.
-4. **Signal Engine:** Run `python NEWS_ENGINE/signal_engine.py` or equivalent signal calculations.
-5. **Backtest/Validation:** Run `python SIGNAL_ENGINE/validate_signals.py` to evaluate outcome performance.
+### 1. Start the Streamlit Dashboard
+```bash
+streamlit run dashboard/dashboard.py
+```
+
+### 2. Manually Trigger Data Syncer
+*   **Sync News & Scrape PDFs**: `python scripts/news_engine/capture_rss.py`
+*   **Run LLM Enrichment Pipeline**: `python scripts/news_engine/enrich_news.py`
+*   **Sync Historical Prices**: `python scripts/price_engine/price_loader.py`
+*   **Validate Signal Performance**: `python scripts/signal_engine/validate_signals.py`
+
+---
+
+## ⚠️ Disclaimer
+*This project is for educational and research purposes only. Market-Intel does not provide financial or investment advice. Algorithmic and quantitative trading carries substantial risk of financial loss. Past performance of signals is not indicative of future results.*
