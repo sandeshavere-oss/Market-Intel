@@ -1,283 +1,334 @@
 company_name,symbol,sector,aliases
-Reliance Industries,RELIANCE,Energy,RIL|Reliance|Reliance Ind|Mukesh Ambani company
-Tata Consultancy Services,TCS,Technology,TCS|Tata Consultancy|Tata IT
-Infosys,INFY,Technology,Infy|Infosys Ltd|Narayana Murthy company
-HDFC Bank,HDFCBANK,Banking,HDFC Bank|HDFC|HDFCBank
-ICICI Bank,ICICIBANK,Banking,ICICI|ICICI Bank|ICICIBank
-Kotak Mahindra Bank,KOTAKBANK,Banking,Kotak|Kotak Bank|KotakBank|Kotak Mahindra
-Axis Bank,AXISBANK,Banking,Axis|Axis Bank|AxisBank
-State Bank of India,SBIN,Banking,SBI|State Bank|SBI Bank
-Bank of Baroda,BANKBARODA,Banking,BOB|Bank of Baroda|BankBaroda
-Punjab National Bank,PNB,Banking,PNB|Punjab National|Punjab Bank
-Canara Bank,CANARABANK,Banking,Canara|Canara Bank
-Union Bank of India,UNIONBANK,Banking,Union Bank|UnionBank
-Indian Bank,INDIANB,Banking,Indian Bank
-Bank of India,BANKINDIA,Banking,BOI|Bank of India
-Federal Bank,FEDERALBNK,Banking,Federal|Federal Bank
-IDFC First Bank,IDFCFIRSTB,Banking,IDFC|IDFC First|IDFC Bank
-IndusInd Bank,INDUSINDBK,Banking,IndusInd|IndusInd Bank
-RBL Bank,RBLBANK,Banking,RBL|RBL Bank
-Yes Bank,YESBANK,Banking,Yes|Yes Bank
-Bajaj Finance,BAJFINANCE,NBFC,Bajaj Finance|BajajFinance|Bajaj Fin
-Bajaj Finserv,BAJAJFINSV,NBFC,Bajaj Finserv|BajajFinserv
-Muthoot Finance,MUTHOOTFIN,NBFC,Muthoot|Muthoot Finance
-Shriram Finance,SHRIRAMFIN,NBFC,Shriram|Shriram Finance|Shriram Transport
-Mahindra Finance,M&MFIN,NBFC,Mahindra Finance|M&M Finance|MMFIN
-Cholamandalam Finance,CHOLAFIN,NBFC,Chola|Cholamandalam|Chola Finance
-L&T Finance,LTF,NBFC,L&T Finance|LTF|L and T Finance
-Piramal Enterprises,PEL,NBFC,Piramal|PEL|Piramal Enterprises
-Tata Motors,TATAMOTORS,Automobile,Tata Motors|TataMotors|Tata Cars|Jaguar Land Rover|JLR
-Mahindra & Mahindra,M&M,Automobile,M&M|Mahindra|Mahindra and Mahindra|Mahindra Motors
-Maruti Suzuki,MARUTI,Automobile,Maruti|Maruti Suzuki|MSIL|Maruti Udyog
-Hero MotoCorp,HEROMOTOCO,Automobile,Hero|Hero Moto|Hero Honda|Hero MotoCorp
-Bajaj Auto,BAJAJ-AUTO,Automobile,Bajaj|Bajaj Auto|BajajAuto
-Eicher Motors,EICHERMOT,Automobile,Eicher|Royal Enfield|Eicher Motors
-TVS Motor,TVSMOTOR,Automobile,TVS|TVS Motor|TVSMotor
-Ashok Leyland,ASHOKLEY,Automobile,Ashok Leyland|AshokLeyland|Hinduja truck
-Bharat Forge,BHARATFORG,Automobile,Bharat Forge|BharatForge
-Samvardhana Motherson,MOTHERSON,Automobile,Motherson|Samvardhana Motherson|Motherson Sumi
-Bosch,BOSCHLTD,Automobile,Bosch|Bosch India
-MRF,MRF,Automobile,MRF|MRF Tyres
-Apollo Tyres,APOLLOTYRE,Automobile,Apollo Tyres|ApolloTyre|Apollo
-CEAT,CEATLTD,Automobile,CEAT|CEAT Tyres
-Wipro,WIPRO,Technology,Wipro|Wipro IT|Wipro Ltd
-HCL Technologies,HCLTECH,Technology,HCL|HCL Tech|HCLTech|HCL Technologies
-Tech Mahindra,TECHM,Technology,Tech Mahindra|TechM|TechMahindra
-LTIMindtree,LTIM,Technology,LTIMindtree|LTIM|LTI|Mindtree|L&T Infotech
-Mphasis,MPHASIS,Technology,Mphasis|MphasiS
-Persistent Systems,PERSISTENT,Technology,Persistent|Persistent Systems
-Coforge,COFORGE,Technology,Coforge|NIIT Technologies
-Tata Elxsi,TATAELXSI,Technology,Tata Elxsi|TataElxsi
-Zensar Technologies,ZENSARTECH,Technology,Zensar|Zensar Technologies
-Firstsource Solutions,FSL,Technology,Firstsource|FSL
-Oracle Financial Services,OFSS,Technology,OFSS|Oracle Financial|Oracle India
-Hindustan Unilever,HINDUNILVR,FMCG,HUL|Hindustan Unilever|HindustanUnilever|Unilever India
-ITC,ITC,FMCG,ITC|ITC Ltd|Indian Tobacco Company
-Nestle India,NESTLEIND,FMCG,Nestle|Nestle India|NestleIndia
-Britannia Industries,BRITANNIA,FMCG,Britannia|Britannia Industries
-Dabur India,DABUR,FMCG,Dabur|Dabur India
-Marico,MARICO,FMCG,Marico|Marico India
-Godrej Consumer Products,GODREJCP,FMCG,GCPL|Godrej Consumer|Godrej CP
-Colgate Palmolive,COLPAL,FMCG,Colgate|Colgate Palmolive|ColgatePalmolive
-Emami,EMAMILTD,FMCG,Emami|Emami Ltd
-Tata Consumer Products,TATACONSUM,FMCG,Tata Consumer|TataConsumer|Tata Tea|Tata Salt
-Procter & Gamble,PGHH,FMCG,P&G|Procter Gamble|PG India
-United Spirits,UNITDSPR,FMCG,United Spirits|Diageo India|McDowell
-United Breweries,UBL,FMCG,UBL|United Breweries|Kingfisher Beer
-Varun Beverages,VBL,FMCG,Varun Beverages|VBL|Pepsi bottler
-Sun Pharmaceutical,SUNPHARMA,Pharma,Sun Pharma|SunPharma|Sun Pharmaceutical
-Dr Reddy's Laboratories,DRREDDY,Pharma,Dr Reddy|DrReddy|DRL|Dr Reddys
-Cipla,CIPLA,Pharma,Cipla|Cipla Ltd
-Divi's Laboratories,DIVISLAB,Pharma,Divis|Divi's|Divis Lab|DivisLab
-Aurobindo Pharma,AUROPHARMA,Pharma,Aurobindo|Aurobindo Pharma|AuroPharma
-Lupin,LUPIN,Pharma,Lupin|Lupin Ltd
-Biocon,BIOCON,Pharma,Biocon|Biocon Ltd
-Torrent Pharmaceuticals,TORNTPHARM,Pharma,Torrent Pharma|TorrentPharma|Torrent
-Alkem Laboratories,ALKEM,Pharma,Alkem|Alkem Labs
-Abbott India,ABBOTINDIA,Pharma,Abbott|Abbott India
-Ipca Laboratories,IPCALAB,Pharma,IPCA|Ipca Labs|Ipca Laboratories
-Glenmark Pharmaceuticals,GLENMARK,Pharma,Glenmark|Glenmark Pharma
-Natco Pharma,NATCOPHARM,Pharma,Natco|Natco Pharma
-Laurus Labs,LAURUSLABS,Pharma,Laurus|Laurus Labs
-Granules India,GRANULES,Pharma,Granules|Granules India
-Zydus Lifesciences,ZYDUSLIFE,Pharma,Zydus|Cadila|Zydus Cadila|Zydus Life
-ONGC,ONGC,Oil & Gas,ONGC|Oil and Natural Gas|Oil Natural Gas Corporation
-Indian Oil Corporation,IOC,Oil & Gas,IOC|Indian Oil|IndianOil|IOCL
-Bharat Petroleum,BPCL,Oil & Gas,BPCL|Bharat Petroleum|BharatPetroleum
-Hindustan Petroleum,HINDPETRO,Oil & Gas,HPCL|Hindustan Petroleum|HindustanPetroleum
-Petronet LNG,PETRONET,Oil & Gas,Petronet|Petronet LNG|PetronetLNG
-Castrol India,CASTROLIND,Oil & Gas,Castrol|Castrol India
-Gujarat Gas,GUJGASLTD,Oil & Gas,Gujarat Gas|GujGas
-Indraprastha Gas,IGL,Oil & Gas,IGL|Indraprastha Gas|IndraprasthaGas
-Mahanagar Gas,MGL,Oil & Gas,MGL|Mahanagar Gas|MahanagarGas
-GAIL India,GAIL,Oil & Gas,GAIL|GAIL India|Gas Authority of India
-Tata Steel,TATASTEEL,Metal & Mining,Tata Steel|TataSteel|Tata Iron
-JSW Steel,JSWSTEEL,Metal & Mining,JSW Steel|JSWSteel|JSW
-Steel Authority of India,SAIL,Metal & Mining,SAIL|Steel Authority|SAIL India
-Hindalco Industries,HINDALCO,Metal & Mining,Hindalco|Hindalco Ind|Aditya Birla Metal
-Vedanta,VEDL,Metal & Mining,Vedanta|VEDL|Vedanta Ltd|Cairn India
-Hindustan Zinc,HINDZINC,Metal & Mining,Hindustan Zinc|HindZinc|HZL
-National Aluminium,NATIONALUM,Metal & Mining,NALCO|National Aluminium|NationalAluminium
-Jindal Steel & Power,JINDALSTEL,Metal & Mining,Jindal Steel|JSP|JindalSteel
-APL Apollo Tubes,APLAPOLLO,Metal & Mining,APL Apollo|APLApollo
-Ratnamani Metals,RATNAMANI,Metal & Mining,Ratnamani|Ratnamani Metals
-Adani Enterprises,ADANIENT,Conglomerate,Adani|Adani Enterprises|AEL|Gautam Adani
-Adani Ports,ADANIPORTS,Infrastructure,Adani Ports|APSEZ|Adani Port
-Adani Power,ADANIPOWER,Power,Adani Power|AdaniPower
-Adani Green Energy,ADANIGREEN,Green Energy,Adani Green|AdaniGreen|Adani Solar
-Adani Total Gas,ATGL,Oil & Gas,Adani Gas|ATGL|Adani Total Gas
-Adani Transmission,ADANITRANS,Power,Adani Transmission|AdaniTrans
-Adani Wilmar,AWL,FMCG,Adani Wilmar|Fortune Oil|AWL
-NDTV,NDTV,Media,NDTV|Adani NDTV
-Power Grid Corporation,POWERGRID,Power,Power Grid|PowerGrid|PGCIL
-NTPC,NTPC,Power,NTPC|National Thermal Power|NTPC Ltd
-Tata Power,TATAPOWER,Power,Tata Power|TataPower
-JSW Energy,JSWENERGY,Power,JSW Energy|JSWEnergy
-Torrent Power,TORNTPOWER,Power,Torrent Power|TorrentPower
-CESC,CESC,Power,CESC|Calcutta Electric
-Adani Energy Solutions,ADANIENSOL,Power,Adani Energy|AESL
-NHPC,NHPC,Power,NHPC|National Hydroelectric
-SJVN,SJVN,Power,SJVN|Satluj Jal Vidyut
-Larsen & Toubro,LT,Infrastructure,L&T|Larsen Toubro|LarsenToubro|L and T
-GMR Airports,GMRINFRA,Infrastructure,GMR|GMR Infra|GMR Airports
-IRB Infrastructure,IRB,Infrastructure,IRB|IRB Infra|IRB Infrastructure
-KNR Constructions,KNRCON,Infrastructure,KNR|KNR Constructions
-Ashoka Buildcon,ASHOKA,Infrastructure,Ashoka|Ashoka Buildcon
-PNC Infratech,PNCINFRA,Infrastructure,PNC|PNC Infra|PNC Infratech
-Dilip Buildcon,DBL,Infrastructure,Dilip Buildcon|DBL
-NCC,NCC,Infrastructure,NCC|Nagarjuna Construction
-HG Infra,HGINFRA,Infrastructure,HG Infra|HGInfra
-Bharat Electronics,BEL,Defence,BEL|Bharat Electronics|Bharat Electronics Ltd
-Hindustan Aeronautics,HAL,Defence,HAL|Hindustan Aeronautics|HAL India
-Mazagon Dock,MAZDOCK,Defence,Mazagon|Mazagon Dock|MDL
-Garden Reach,GRSE,Defence,GRSE|Garden Reach|Garden Reach Shipbuilders
-Cochin Shipyard,COCHINSHIP,Defence,Cochin Shipyard|CSL|CochinShipyard
-BEML,BEML,Defence,BEML|Bharat Earth Movers
-Paras Defence,PARAS,Defence,Paras Defence|ParasDefence
-Data Patterns,DATAPATTNS,Defence,Data Patterns|DataPatterns
-Ultratech Cement,ULTRACEMCO,Cement,Ultratech|UltraTech|UltratechCement|Aditya Birla Cement
-Shree Cement,SHREECEM,Cement,Shree Cement|ShreeCement
-Ambuja Cements,AMBUJACEM,Cement,Ambuja|Ambuja Cement|Ambujacements|Adani Cement
-ACC,ACC,Cement,ACC|ACC Cement|ACC Ltd
-Dalmia Bharat,DALBHARAT,Cement,Dalmia|Dalmia Bharat|DalmiaBharat
-JK Cement,JKCEMENT,Cement,JK Cement|JKCement
-The Ramco Cements,RAMCOCEM,Cement,Ramco|Ramco Cement|RamcoCement
-India Cements,INDIACEM,Cement,India Cements|IndiaCement
-Birlasoft,BSOFT,Technology,Birlasoft|BSOFT|Birla Soft
-Sun TV Network,SUNTV,Media,Sun TV|SunTV|Sun Network
-Zee Entertainment,ZEEL,Media,Zee|Zee Entertainment|ZEEL|Zee TV
-PVR Inox,PVRINOX,Media,PVR|Inox|PVR Inox|PVRInox
-DishTV,DISHTV,Media,Dish TV|DishTV|Dish India
-Hathway Cable,HATHWAY,Media,Hathway|Hathway Cable
-Bharti Airtel,BHARTIARTL,Telecom,Airtel|Bharti Airtel|BhartiAirtel|Airtel India
-Vodafone Idea,IDEA,Telecom,Vi|Vodafone Idea|VodafoneIdea|Idea Cellular
-MTNL,MTNL,Telecom,MTNL|Mahanagar Telephone
-BSNL,BSNL,Telecom,BSNL|Bharat Sanchar Nigam
-Tata Communications,TATACOMM,Telecom,Tata Comm|TataComm|Tata Communications
-Indus Towers,INDUSTOWER,Telecom,Indus Towers|IndusTowers|Bharti Infratel
-Indian Railway Catering,IRCTC,Travel,IRCTC|Indian Railway Catering|Indian Railways ticket
-InterGlobe Aviation,INDIGO,Aviation,IndiGo|InterGlobe|Indigo Airlines
-SpiceJet,SPICEJET,Aviation,SpiceJet|Spice Jet
-Go Airlines,GODFRYPHLP,Aviation,GoAir|Go First|Go Airlines
-Blue Dart Express,BLUEDART,Logistics,Blue Dart|BlueDart|Blue Dart Express
-Container Corporation,CONCOR,Logistics,CONCOR|Container Corporation|ConCor
-Gati,GATI,Logistics,Gati|Gati Ltd
-TCI Express,TCIEXP,Logistics,TCI|TCI Express|TCIExpress
-VRL Logistics,VRLLOG,Logistics,VRL|VRL Logistics|VRLLogistics
-Delhivery,DELHIVERY,Logistics,Delhivery|Delhivery Ltd
-Asian Paints,ASIANPAINT,Paints,Asian Paints|AsianPaints|Asian Paint
-Berger Paints,BERGEPAINT,Paints,Berger|Berger Paints|BergerPaints
-Kansai Nerolac,KANSAINER,Paints,Nerolac|Kansai Nerolac|KansaiNerolac
-Akzo Nobel,AKZOINDIA,Paints,Akzo|Akzo Nobel|AkzoNobel India
-Indigo Paints,INDIGOPNTS,Paints,Indigo Paints|IndigoPaints
-Pidilite Industries,PIDILITIND,Chemicals,Pidilite|Fevicol|PidiliteInd|Pidilite Industries
-SRF,SRF,Chemicals,SRF|SRF Ltd
-Deepak Nitrite,DEEPAKNTR,Chemicals,Deepak Nitrite|DeepakNitrite|Deepak Fertilisers
-Aarti Industries,AARTIIND,Chemicals,Aarti|Aarti Industries|AartiInd
-Tata Chemicals,TATACHEM,Chemicals,Tata Chemicals|TataChemicals
-Navin Fluorine,NAVINFLUOR,Chemicals,Navin Fluorine|NavinFluorine
-Vinati Organics,VINATIORGA,Chemicals,Vinati|Vinati Organics
-Gujarat Fluorochemicals,FLUOROCHEM,Chemicals,GFL|Gujarat Fluorochemicals|GFCL
-Godrej Industries,GODREJIND,Chemicals,Godrej Industries|GodrejInd
-Sudarshan Chemical,SUDARSCHEM,Chemicals,Sudarshan|Sudarshan Chemical
-Avenue Supermarts,DMART,Retail,DMart|D-Mart|Avenue Supermarts|D Mart
-Trent,TRENT,Retail,Trent|Westside|Trent Ltd|Zudio
-Titan Company,TITAN,Retail,Titan|Titan Company|Tanishq|Fastrack
-Kalyan Jewellers,KALYANKJIL,Retail,Kalyan Jewellers|KalyanJewellers|Kalyan
-Senco Gold,SENCO,Retail,Senco|Senco Gold
-Jubilant FoodWorks,JUBLFOOD,Retail,Jubilant|Dominos India|JublFoodWorks|Domino's
-Devyani International,DEVYANI,Retail,Devyani|KFC India|Pizza Hut India
-Sapphire Foods,SAPPHIRE,Retail,Sapphire Foods|KFC India
-Westlife Foodworld,WESTLIFE,Retail,Westlife|McDonalds India|McDonald's India
-Zomato,ZOMATO,Technology,Zomato|Zomato Ltd|Blinkit
-Paytm,PAYTM,Fintech,Paytm|One97 Communications|PayTM
-PB Fintech,POLICYBZR,Fintech,PolicyBazaar|PB Fintech|Policybazaar|PaisaBazaar
-Nykaa,FSN,Retail,Nykaa|FSN|Nykaa Fashion
-Nazara Technologies,NAZARA,Technology,Nazara|Nazara Tech|Nazara Technologies
-Delhivery,DELHIVERY,Logistics,Delhivery
-MapmyIndia,MAPMYINDIA,Technology,MapmyIndia|CE Info Systems
-Tracxn Technologies,TRACXN,Technology,Tracxn|Tracxn Technologies
-Info Edge,NAUKRI,Technology,Info Edge|Naukri|InfoEdge|Jeevansathi|99acres
-Indiamart,INDIAMART,Technology,Indiamart|India Mart|IndiaMart Intermesh
-Just Dial,JUSTDIAL,Technology,JustDial|Just Dial
-Infosonics,TATATECH,Technology,Tata Technologies|TataTech
-Kpit Technologies,KPITTECH,Technology,KPIT|KPIT Technologies|KPITTech
-Happiest Minds,HAPPSTMNDS,Technology,Happiest Minds|HappiestMinds
-Cyient,CYIENT,Technology,Cyient|Cyient Ltd|Infotech Enterprises
-Mastek,MASTEK,Technology,Mastek|Mastek Ltd
-Intellect Design,INTELLECT,Technology,Intellect Design|IntellectDesign|Intellect
-HDFC Life,HDFCLIFE,Insurance,HDFC Life|HDFCLife|HDFC Insurance
-SBI Life,SBILIFE,Insurance,SBI Life|SBILife|SBI Insurance
-ICICI Prudential Life,ICICIPRULI,Insurance,ICICI Pru|ICICI Prudential Life|ICICIPruLife
-Max Financial,MFSL,Insurance,Max Life|Max Financial|MFSL|Max Insurance
-Life Insurance Corporation,LICI,Insurance,LIC|Life Insurance Corporation|LIC India
-New India Assurance,NIACL,Insurance,New India Assurance|NIACL|New India
-General Insurance,GICRE,Insurance,GIC|General Insurance Corporation|GIC Re
-Star Health,STARHEALTH,Insurance,Star Health|StarHealth|Star Health Insurance
-Niva Bupa,NIVABUPA,Insurance,Niva Bupa|NivaBupa|Max Bupa
-Go Digit,GODIGIT,Insurance,Go Digit|GoDigit|Digit Insurance
-Oberoi Realty,OBEROIRLTY,Real Estate,Oberoi Realty|OberoisRealty|Oberoi
-DLF,DLF,Real Estate,DLF|DLF Ltd|Delhi Land Finance
-Godrej Properties,GODREJPROP,Real Estate,Godrej Properties|GodrejProperties
-Prestige Estates,PRESTIGE,Real Estate,Prestige|Prestige Estates|PrestigeEstates
-Brigade Enterprises,BRIGADE,Real Estate,Brigade|Brigade Enterprises
-Sobha,SOBHA,Real Estate,Sobha|Sobha Ltd|Sobha Developers
-Macrotech Developers,LODHA,Real Estate,Lodha|Macrotech|Lodha Group
-Sunteck Realty,SUNTECK,Real Estate,Sunteck|Sunteck Realty
-Phoenix Mills,PHOENIXLTD,Real Estate,Phoenix|Phoenix Mills|PhoenixMills
-Nexus Select Trust,NEXUSSELECT,Real Estate,Nexus Mall|Nexus Select
-Raymond,RAYMOND,Textile,Raymond|Raymond Ltd|Raymond Textiles
-Vardhman Textiles,VTL,Textile,Vardhman|Vardhman Textiles|VTL
-Welspun India,WELSPUNIND,Textile,Welspun|Welspun India
-Trident,TRIDENT,Textile,Trident|Trident Ltd
-Arvind,ARVIND,Textile,Arvind|Arvind Ltd|Arvind Textiles
-KPR Mill,KPRMILL,Textile,KPR Mill|KPRMill
-Page Industries,PAGEIND,Textile,Page Industries|Jockey India|PageInd
-Alok Industries,ALOKINDS,Textile,Alok|Alok Industries
-Indo Count Industries,ICIL,Textile,Indo Count|IndoCount
-Himatsingka Seide,HIMATSEIDE,Textile,Himatsingka|Himatsingka Seide
-Siemens India,SIEMENS,Capital Goods,Siemens|Siemens India
-ABB India,ABB,Capital Goods,ABB|ABB India
-Thermax,THERMAX,Capital Goods,Thermax|Thermax Ltd
-Havells India,HAVELLS,Capital Goods,Havells|Havells India
-Crompton Greaves,CROMPTON,Capital Goods,Crompton|Crompton Greaves Consumer
-Voltas,VOLTAS,Capital Goods,Voltas|Voltas Ltd|Tata AC
-Blue Star,BLUESTAR,Capital Goods,Blue Star|BlueStar|Blue Star India
-Whirlpool India,WHIRLPOOL,Capital Goods,Whirlpool|Whirlpool India
-Dixon Technologies,DIXON,Capital Goods,Dixon|Dixon Technologies|DixonTech
-Kaynes Technology,KAYNES,Capital Goods,Kaynes|Kaynes Technology
-Amber Enterprises,AMBER,Capital Goods,Amber|Amber Enterprises
-Bharat Heavy Electricals,BHEL,Capital Goods,BHEL|Bharat Heavy Electricals|BharatHeavy
-Cummins India,CUMMINSIND,Capital Goods,Cummins|Cummins India
-Schaeffler India,SCHAEFFLER,Capital Goods,Schaeffler|Schaeffler India|FAG Bearings
-SKF India,SKFINDIA,Capital Goods,SKF|SKF India
-Timken India,TIMKEN,Capital Goods,Timken|Timken India
-Grindwell Norton,GRINDWELL,Capital Goods,Grindwell|Grindwell Norton|Saint Gobain
-Carborundum Universal,CARBORUNIV,Capital Goods,Carborundum|CUMI|CarborundumUniversal
-Solar Industries,SOLARINDS,Capital Goods,Solar Industries|SolarInd
-Apar Industries,APARINDS,Capital Goods,Apar|Apar Industries
-KEI Industries,KEI,Capital Goods,KEI|KEI Industries
-Polycab India,POLYCAB,Capital Goods,Polycab|Polycab India
-REC Limited,RECLTD,Finance,REC|Rural Electrification|RECLtd
-Power Finance Corporation,PFC,Finance,PFC|Power Finance|PowerFinance
-IRFC,IRFC,Finance,IRFC|Indian Railway Finance|IRFCLtd
-NABARD,NABARD,Finance,NABARD|National Bank Agriculture
-SIDBI,SIDBI,Finance,SIDBI|Small Industries Development Bank
-Manappuram Finance,MANAPPURAM,NBFC,Manappuram|Manappuram Finance|Manappuram Gold
-IIFL Finance,IIFL,NBFC,IIFL|IIFL Finance|India Infoline
-Creditaccess Grameen,CREDITACC,NBFC,CreditAccess|Grameen|CreditAccess Grameen
-Spandana Sphoorty,SPANDANA,NBFC,Spandana|Spandana Sphoorty
-Fusion Micro Finance,FUSION,NBFC,Fusion|Fusion MicroFinance
-Aptus Value Housing,APTUS,NBFC,Aptus|Aptus Value Housing
-Home First Finance,HOMEFIRST,NBFC,Home First|HomeFirst
-Aavas Financiers,AAVAS,NBFC,Aavas|Aavas Financiers
-Can Fin Homes,CANFINHOME,NBFC,Can Fin|CanFin|Can Fin Homes
-LIC Housing Finance,LICHSGFIN,NBFC,LIC Housing|LICHousing|LICHFL
-HDFC,HDFC,NBFC,HDFC Ltd|Housing Development Finance|HDFC Housing
-PNB Housing Finance,PNBHOUSING,NBFC,PNB Housing|PNBHousing
-Repco Home Finance,REPCOHOME,NBFC,Repco|Repco Home Finance
-GIC Housing Finance,GICHSGFIN,NBFC,GIC Housing|GICHousing
-Baba Arts,532380.BO,Media & Entertainment,BABA ARTS LTD|Baba Arts|532380
+360 One Wam,360ONE,Financial Services,360ONE|360 One Wam
 Grand Foundry,513343.BO,Metals & Mining,GRAND FOUNDRY Ltd|Grand Foundry|513343
 Oxford Industries,514414.BO,Textiles,OXFORD INDUSTRIES LIMITED|Oxford Industries|514414
+Baba Arts,532380.BO,Media & Entertainment,BABA ARTS LTD|Baba Arts|532380
+Aarti Industries,AARTIIND,Chemicals,Aarti|Aarti Industries|AartiInd
+Aavas Financiers,AAVAS,NBFC,Aavas|Aavas Financiers
+ABB India,ABB,Capital Goods,ABB|ABB India
+Abbott India,ABBOTINDIA,Pharma,Abbott|Abbott India
+Aditya Birla Capital,ABCAPITAL,Financial Services,Aditya|ABCAPITAL|Aditya Birla Capital
+ACC,ACC,Cement,ACC|ACC Cement|ACC Ltd
+Adani Energy Solutions,ADANIENSOL,Power,Adani Energy|AESL
+Adani Enterprises,ADANIENT,Conglomerate,Adani|Adani Enterprises|AEL|Gautam Adani
+Adani Green Energy,ADANIGREEN,Green Energy,Adani Green|AdaniGreen|Adani Solar
+Adani Ports,ADANIPORTS,Infrastructure,Adani Ports|APSEZ|Adani Port
+Adani Power,ADANIPOWER,Power,Adani Power|AdaniPower
+Akzo Nobel,AKZOINDIA,Paints,Akzo|Akzo Nobel|AkzoNobel India
+Alkem Laboratories,ALKEM,Pharma,Alkem|Alkem Labs
+Alok Industries,ALOKINDS,Textile,Alok|Alok Industries
+Amber Enterprises,AMBER,Capital Goods,Amber|Amber Enterprises
+Ambuja Cements,AMBUJACEM,Cement,Ambuja|Ambuja Cement|Ambujacements|Adani Cement
+Angel One,ANGELONE,Financial Services,Angel One|Angel|ANGELONE
+Apar Industries,APARINDS,Capital Goods,Apar|Apar Industries
+APL Apollo Tubes,APLAPOLLO,Metal & Mining,APL Apollo|APLApollo
+Apollo Hospitals Enterprise,APOLLOHOSP,Healthcare,Apollo|APOLLOHOSP|Apollo Hospitals Enterprise
+Apollo Tyres,APOLLOTYRE,Automobile,Apollo Tyres|ApolloTyre|Apollo
+Aptus Value Housing,APTUS,NBFC,Aptus|Aptus Value Housing
+Arvind,ARVIND,Textile,Arvind|Arvind Ltd|Arvind Textiles
+Ashoka Buildcon,ASHOKA,Infrastructure,Ashoka|Ashoka Buildcon
+Ashok Leyland,ASHOKLEY,Automobile,Ashok Leyland|AshokLeyland|Hinduja truck
+Asian Paints,ASIANPAINT,Paints,Asian Paints|AsianPaints|Asian Paint
+Astral,ASTRAL,Industrials,Astral|ASTRAL
+Adani Total Gas,ATGL,Oil & Gas,Adani Gas|ATGL|Adani Total Gas
+AU Small Finance Bank,AUBANK,Financial Services,AUBANK|AU Small Finance Bank
+Aurobindo Pharma,AUROPHARMA,Pharma,Aurobindo|Aurobindo Pharma|AuroPharma
+Adani Wilmar,AWL,FMCG,Adani Wilmar|Fortune Oil|AWL
+Axis Bank,AXISBANK,Banking,Axis|Axis Bank|AxisBank
+Bajaj Auto,BAJAJ-AUTO,Automobile,Bajaj|Bajaj Auto|BajajAuto
+Bajaj Finserv,BAJAJFINSV,NBFC,Bajaj Finserv|BajajFinserv
+Bajaj Holdings & Investment,BAJAJHLDNG,Financial Services,Bajaj|BAJAJHLDNG|Bajaj Holdings & Investment
+Bajaj Finance,BAJFINANCE,NBFC,Bajaj Finance|BajajFinance|Bajaj Fin
+Bandhan Bank,BANDHANBNK,Financial Services,Bandhan Bank|BANDHANBNK|Bandhan
+Bank of Baroda,BANKBARODA,Banking,BOB|Bank of Baroda|BankBaroda
+Bank of India,BANKINDIA,Banking,BOI|Bank of India
+Bharat Dynamics,BDL,Industrials,Bharat|BDL|Bharat Dynamics
+Bharat Electronics,BEL,Defence,BEL|Bharat Electronics|Bharat Electronics Ltd
+BEML,BEML,Defence,BEML|Bharat Earth Movers
+Berger Paints,BERGEPAINT,Paints,Berger|Berger Paints|BergerPaints
+Bharat Forge,BHARATFORG,Automobile,Bharat Forge|BharatForge
+Bharti Airtel,BHARTIARTL,Telecom,Airtel|Bharti Airtel|BhartiAirtel|Airtel India
+Bharat Heavy Electricals,BHEL,Capital Goods,BHEL|Bharat Heavy Electricals|BharatHeavy
+Biocon,BIOCON,Pharma,Biocon|Biocon Ltd
+Blue Dart Express,BLUEDART,Logistics,Blue Dart|BlueDart|Blue Dart Express
+Blue Star,BLUESTARCO,Industrials,Blue Star|BLUESTAR|BLUESTARCO
+Bosch,BOSCHLTD,Automobile,Bosch|Bosch India
+Bharat Petroleum,BPCL,Oil & Gas,BPCL|Bharat Petroleum|BharatPetroleum
+Brigade Enterprises,BRIGADE,Real Estate,Brigade|Brigade Enterprises
+Britannia Industries,BRITANNIA,FMCG,Britannia|Britannia Industries
+BSE,BSE,Financial Services,BSE
+BSNL,BSNL,Telecom,BSNL|Bharat Sanchar Nigam
+Birlasoft,BSOFT,Technology,Birlasoft|BSOFT|Birla Soft
+Computer Age Management Services,CAMS,Technology,Computer Age Management Services|CAMS|Computer
+Canara Bank,CANBK,Financial Services,Canara Bank|CANBK|Canara
+Can Fin Homes,CANFINHOME,NBFC,Can Fin|CanFin|Can Fin Homes
+Carborundum Universal,CARBORUNIV,Capital Goods,Carborundum|CUMI|CarborundumUniversal
+Castrol India,CASTROLIND,Oil & Gas,Castrol|Castrol India
+Central Depository Services,CDSL,Financial Services,Central|Central Depository Services|CDSL
+CEAT,CEATLTD,Automobile,CEAT|CEAT Tyres
+CESC,CESC,Power,CESC|Calcutta Electric
+CG Power and Industrial Solutions,CGPOWER,Industrials,CG Power and Industrial Solutions|CGPOWER
+Cholamandalam Finance,CHOLAFIN,NBFC,Chola|Cholamandalam|Chola Finance
+Cipla,CIPLA,Pharma,Cipla|Cipla Ltd
+Coal India,COALINDIA,Energy,Coal|COALINDIA|Coal India
+Cochin Shipyard,COCHINSHIP,Defence,Cochin Shipyard|CSL|CochinShipyard
+Coforge,COFORGE,Technology,Coforge|NIIT Technologies
+Colgate Palmolive,COLPAL,FMCG,Colgate|Colgate Palmolive|ColgatePalmolive
+Container Corporation,CONCOR,Logistics,CONCOR|Container Corporation|ConCor
+Creditaccess Grameen,CREDITACC,NBFC,CreditAccess|Grameen|CreditAccess Grameen
+Crompton Greaves,CROMPTON,Capital Goods,Crompton|Crompton Greaves Consumer
+Cummins India,CUMMINSIND,Capital Goods,Cummins|Cummins India
+Cyient,CYIENT,Technology,Cyient|Cyient Ltd|Infotech Enterprises
+Dabur India,DABUR,FMCG,Dabur|Dabur India
+Dalmia Bharat,DALBHARAT,Cement,Dalmia|Dalmia Bharat|DalmiaBharat
+Data Patterns,DATAPATTNS,Defence,Data Patterns|DataPatterns
+Dilip Buildcon,DBL,Infrastructure,Dilip Buildcon|DBL
+Deepak Nitrite,DEEPAKNTR,Chemicals,Deepak Nitrite|DeepakNitrite|Deepak Fertilisers
+Delhivery,DELHIVERY,Logistics,Delhivery
+Devyani International,DEVYANI,Retail,Devyani|KFC India|Pizza Hut India
+DishTV,DISHTV,Media,Dish TV|DishTV|Dish India
+Divi's Laboratories,DIVISLAB,Pharma,Divis|Divi's|Divis Lab|DivisLab
+Dixon Technologies,DIXON,Capital Goods,Dixon|Dixon Technologies|DixonTech
+DLF,DLF,Real Estate,DLF|DLF Ltd|Delhi Land Finance
+Avenue Supermarts,DMART,Retail,DMart|D-Mart|Avenue Supermarts|D Mart
+Dr Reddy's Laboratories,DRREDDY,Pharma,Dr Reddy|DrReddy|DRL|Dr Reddys
+Eicher Motors,EICHERMOT,Automobile,Eicher|Royal Enfield|Eicher Motors
+Emami,EMAMILTD,FMCG,Emami|Emami Ltd
+Eternal,ETERNAL,Consumer Cyclical,ETERNAL|Eternal
+Exide Industries,EXIDEIND,Consumer Cyclical,Exide Industries|Exide|EXIDEIND
+Federal Bank,FEDERALBNK,Banking,Federal|Federal Bank
+Gujarat Fluorochemicals,FLUOROCHEM,Chemicals,GFL|Gujarat Fluorochemicals|GFCL
+Force Motors,FORCEMOT,Consumer Cyclical,FORCEMOT|Force|Force Motors
+Fortis Healthcare,FORTIS,Healthcare,Fortis Healthcare|Fortis|FORTIS
+Firstsource Solutions,FSL,Technology,Firstsource|FSL
+Fusion Micro Finance,FUSION,NBFC,Fusion|Fusion MicroFinance
+GAIL India,GAIL,Oil & Gas,GAIL|GAIL India|Gas Authority of India
+Gati,GATI,Logistics,Gati|Gati Ltd
+GIC Housing Finance,GICHSGFIN,NBFC,GIC Housing|GICHousing
+General Insurance,GICRE,Insurance,GIC|General Insurance Corporation|GIC Re
+Glenmark Pharmaceuticals,GLENMARK,Pharma,Glenmark|Glenmark Pharma
+GMR Airports,GMRAIRPORT,Industrials,GMRAIRPORT|GMR Airports
+Go Airlines,GODFRYPHLP,Aviation,GoAir|Go First|Go Airlines
+Go Digit,GODIGIT,Insurance,Go Digit|GoDigit|Digit Insurance
+Godrej Consumer Products,GODREJCP,FMCG,GCPL|Godrej Consumer|Godrej CP
+Godrej Industries,GODREJIND,Chemicals,Godrej Industries|GodrejInd
+Godrej Properties,GODREJPROP,Real Estate,Godrej Properties|GodrejProperties
+Granules India,GRANULES,Pharma,Granules|Granules India
+Grasim Industries,GRASIM,Basic Materials,GRASIM|Grasim Industries|Grasim
+Grindwell Norton,GRINDWELL,Capital Goods,Grindwell|Grindwell Norton|Saint Gobain
+Garden Reach,GRSE,Defence,GRSE|Garden Reach|Garden Reach Shipbuilders
+Gujarat Gas,GUJGASLTD,Oil & Gas,Gujarat Gas|GujGas
+GE Vernova T&D India,GVT&D,Industrials,GE Vernova|GET&D|GVT&D|GVT-D
+Hindustan Aeronautics,HAL,Defence,HAL|Hindustan Aeronautics|HAL India
+Happiest Minds,HAPPSTMNDS,Technology,Happiest Minds|HappiestMinds
+Hathway Cable,HATHWAY,Media,Hathway|Hathway Cable
+Havells India,HAVELLS,Capital Goods,Havells|Havells India
+HCL Technologies,HCLTECH,Technology,HCL|HCL Tech|HCLTech|HCL Technologies
+HDFC Asset Management Company,HDFCAMC,Financial Services,HDFCAMC|HDFC Asset Management Company|HDFC
+HDFC Bank,HDFCBANK,Banking,HDFC Bank|HDFC|HDFCBank
+HDFC Life,HDFCLIFE,Insurance,HDFC Life|HDFCLife|HDFC Insurance
+Hero MotoCorp,HEROMOTOCO,Automobile,Hero|Hero Moto|Hero Honda|Hero MotoCorp
+HG Infra,HGINFRA,Infrastructure,HG Infra|HGInfra
+Himatsingka Seide,HIMATSEIDE,Textile,Himatsingka|Himatsingka Seide
+Hindalco Industries,HINDALCO,Metal & Mining,Hindalco|Hindalco Ind|Aditya Birla Metal
+Hindustan Petroleum,HINDPETRO,Oil & Gas,HPCL|Hindustan Petroleum|HindustanPetroleum
+Hindustan Unilever,HINDUNILVR,FMCG,HUL|Hindustan Unilever|HindustanUnilever|Unilever India
+Hindustan Zinc,HINDZINC,Metal & Mining,Hindustan Zinc|HindZinc|HZL
+Home First Finance,HOMEFIRST,NBFC,Home First|HomeFirst
+HYUNDAI MOTOR INDIA LTD,HYUNDAI,Consumer Cyclical,HYUNDAI MOTOR INDIA LTD|HYUNDAI
+ICICI Bank,ICICIBANK,Banking,ICICI|ICICI Bank|ICICIBank
+ICICI Lombard General Insurance Company,ICICIGI,Financial Services,ICICI|ICICI Lombard General Insurance Company|ICICIGI
+ICICI Prudential Life,ICICIPRULI,Insurance,ICICI Pru|ICICI Prudential Life|ICICIPruLife
+Indo Count Industries,ICIL,Textile,Indo Count|IndoCount
+Vodafone Idea,IDEA,Telecom,Vi|Vodafone Idea|VodafoneIdea|Idea Cellular
+IDFC First Bank,IDFCFIRSTB,Banking,IDFC|IDFC First|IDFC Bank
+Indian Energy Exchange,IEX,Financial Services,IEX|Indian|Indian Energy Exchange
+Indraprastha Gas,IGL,Oil & Gas,IGL|Indraprastha Gas|IndraprasthaGas
+IIFL Finance,IIFL,NBFC,IIFL|IIFL Finance|India Infoline
+The Indian Hotels Company,INDHOTEL,Consumer Cyclical,The Indian Hotels Company|INDHOTEL
+India Cements,INDIACEM,Cement,India Cements|IndiaCement
+Indiamart,INDIAMART,Technology,Indiamart|India Mart|IndiaMart Intermesh
+Indian Bank,INDIANB,Banking,Indian Bank
+InterGlobe Aviation,INDIGO,Aviation,IndiGo|InterGlobe|Indigo Airlines
+Indigo Paints,INDIGOPNTS,Paints,Indigo Paints|IndigoPaints
+IndusInd Bank,INDUSINDBK,Banking,IndusInd|IndusInd Bank
+Indus Towers,INDUSTOWER,Telecom,Indus Towers|IndusTowers|Bharti Infratel
+Infosys,INFY,Technology,Infy|Infosys Ltd|Narayana Murthy company
+Inox Wind,INOXWIND,Industrials,Inox|INOXWIND|Inox Wind
+Intellect Design,INTELLECT,Technology,Intellect Design|IntellectDesign|Intellect
+Indian Oil Corporation,IOC,Oil & Gas,IOC|Indian Oil|IndianOil|IOCL
+Ipca Laboratories,IPCALAB,Pharma,IPCA|Ipca Labs|Ipca Laboratories
+IRB Infrastructure,IRB,Infrastructure,IRB|IRB Infra|IRB Infrastructure
+Indian Railway Catering,IRCTC,Travel,IRCTC|Indian Railway Catering|Indian Railways ticket
+Indian Renewable Energy Development Agency,IREDA,Financial Services,Indian Renewable Energy Development Agency|Indian|IREDA
+IRFC,IRFC,Finance,IRFC|Indian Railway Finance|IRFCLtd
+ITC,ITC,FMCG,ITC|ITC Ltd|Indian Tobacco Company
+Jindal Steel & Power,JINDALSTEL,Metal & Mining,Jindal Steel|JSP|JindalSteel
+Jio Financial Services,JIOFIN,Financial Services,Jio Financial Services|JIOFIN
+JK Cement,JKCEMENT,Cement,JK Cement|JKCement
+JSW Energy,JSWENERGY,Power,JSW Energy|JSWEnergy
+JSW Steel,JSWSTEEL,Metal & Mining,JSW Steel|JSWSteel|JSW
+Jubilant FoodWorks,JUBLFOOD,Retail,Jubilant|Dominos India|JublFoodWorks|Domino's
+Just Dial,JUSTDIAL,Technology,JustDial|Just Dial
+Kalyan Jewellers,KALYANKJIL,Retail,Kalyan Jewellers|KalyanJewellers|Kalyan
+Kansai Nerolac,KANSAINER,Paints,Nerolac|Kansai Nerolac|KansaiNerolac
+Kaynes Technology,KAYNES,Capital Goods,Kaynes|Kaynes Technology
+KEI Industries,KEI,Capital Goods,KEI|KEI Industries
+KFin Technologies,KFINTECH,Technology,KFin Technologies|KFINTECH|KFin
+KNR Constructions,KNRCON,Infrastructure,KNR|KNR Constructions
+Kotak Mahindra Bank,KOTAKBANK,Banking,Kotak|Kotak Bank|KotakBank|Kotak Mahindra
+Kpit Technologies,KPITTECH,Technology,KPIT|KPIT Technologies|KPITTech
+KPR Mill,KPRMILL,Textile,KPR Mill|KPRMill
+Laurus Labs,LAURUSLABS,Pharma,Laurus|Laurus Labs
+LIC Housing Finance,LICHSGFIN,NBFC,LIC Housing|LICHousing|LICHFL
+Life Insurance Corporation,LICI,Insurance,LIC|Life Insurance Corporation|LIC India
+Macrotech Developers,LODHA,Real Estate,Lodha|Macrotech|Lodha Group
+Larsen & Toubro,LT,Infrastructure,L&T|Larsen Toubro|LarsenToubro|L and T
+L&T Finance,LTF,NBFC,L&T Finance|LTF|L and T Finance
+LTIMindtree,LTM,Technology,LTIMindtree|LTIM|LTM
+Lupin,LUPIN,Pharma,Lupin|Lupin Ltd
+Mahindra & Mahindra,M&M,Automobile,M&M|Mahindra|Mahindra and Mahindra|Mahindra Motors
+Mahindra Finance,M&MFIN,NBFC,Mahindra Finance|M&M Finance|MMFIN
+Manappuram Finance,MANAPPURAM,NBFC,Manappuram|Manappuram Finance|Manappuram Gold
+Mankind Pharma,MANKIND,Healthcare,Mankind Pharma|Mankind|MANKIND
+MapmyIndia,MAPMYINDIA,Technology,MapmyIndia|CE Info Systems
+Marico,MARICO,FMCG,Marico|Marico India
+Maruti Suzuki,MARUTI,Automobile,Maruti|Maruti Suzuki|MSIL|Maruti Udyog
+Mastek,MASTEK,Technology,Mastek|Mastek Ltd
+Max Healthcare Institute,MAXHEALTH,Healthcare,MAXHEALTH|Max Healthcare Institute
+Mazagon Dock,MAZDOCK,Defence,Mazagon|Mazagon Dock|MDL
+Multi Commodity Exchange of India,MCX,Financial Services,MCX|Multi Commodity Exchange of India|Multi
+Max Financial,MFSL,Insurance,Max Life|Max Financial|MFSL|Max Insurance
+Mahanagar Gas,MGL,Oil & Gas,MGL|Mahanagar Gas|MahanagarGas
+Samvardhana Motherson,MOTHERSON,Automobile,Motherson|Samvardhana Motherson|Motherson Sumi
+Motilal Oswal Financial Services,MOTILALOFS,Financial Services,MOTILALOFS|Motilal|Motilal Oswal Financial Services
+Mphasis,MPHASIS,Technology,Mphasis|MphasiS
+MRF,MRF,Automobile,MRF|MRF Tyres
+MTNL,MTNL,Telecom,MTNL|Mahanagar Telephone
+Muthoot Finance,MUTHOOTFIN,NBFC,Muthoot|Muthoot Finance
+NABARD,NABARD,Finance,NABARD|National Bank Agriculture
+Nippon Life India Asset Management,NAM-INDIA,Financial Services,NAM-INDIA|Nippon Life India Asset Management|Nippon
+Natco Pharma,NATCOPHARM,Pharma,Natco|Natco Pharma
+National Aluminium,NATIONALUM,Metal & Mining,NALCO|National Aluminium|NationalAluminium
+Info Edge,NAUKRI,Technology,Info Edge|Naukri|InfoEdge|Jeevansathi|99acres
+Navin Fluorine,NAVINFLUOR,Chemicals,Navin Fluorine|NavinFluorine
+Nazara Technologies,NAZARA,Technology,Nazara|Nazara Tech|Nazara Technologies
+NBCC,NBCC,Industrials,NBCC
+NCC,NCC,Infrastructure,NCC|Nagarjuna Construction
+NDTV,NDTV,Media,NDTV|Adani NDTV
+Nestle India,NESTLEIND,FMCG,Nestle|Nestle India|NestleIndia
+Nexus Select Trust,NEXUSSELECT,Real Estate,Nexus Mall|Nexus Select
+NHPC,NHPC,Power,NHPC|National Hydroelectric
+New India Assurance,NIACL,Insurance,New India Assurance|NIACL|New India
+Nifty 50 Index,NIFTY50,Index,Nifty|Nifty 50|NIFTY50
+Niva Bupa,NIVABUPA,Insurance,Niva Bupa|NivaBupa|Max Bupa
+NMDC,NMDC,Basic Materials,NMDC
+NTPC,NTPC,Power,NTPC|National Thermal Power|NTPC Ltd
+Nuvama Wealth Management,NUVAMA,Financial Services,Nuvama Wealth Management|NUVAMA|Nuvama
+FSN E-Commerce Ventures,NYKAA,Consumer Cyclical,NYKAA|FSN E-Commerce Ventures
+Oberoi Realty,OBEROIRLTY,Real Estate,Oberoi Realty|OberoisRealty|Oberoi
+Oracle Financial Services,OFSS,Technology,OFSS|Oracle Financial|Oracle India
+Oil India,OIL,Energy,Oil India|OIL
+ONGC,ONGC,Oil & Gas,ONGC|Oil and Natural Gas|Oil Natural Gas Corporation
+Page Industries,PAGEIND,Textile,Page Industries|Jockey India|PageInd
+Paras Defence,PARAS,Defence,Paras Defence|ParasDefence
+Patanjali Foods,PATANJALI,Consumer Defensive,Patanjali|Patanjali Foods|PATANJALI
+Paytm,PAYTM,Fintech,Paytm|One97 Communications|PayTM
+Persistent Systems,PERSISTENT,Technology,Persistent|Persistent Systems
+Petronet LNG,PETRONET,Oil & Gas,Petronet|Petronet LNG|PetronetLNG
+Power Finance Corporation,PFC,Finance,PFC|Power Finance|PowerFinance
+PG Electroplast,PGEL,Technology,PGEL|PG Electroplast
+Procter & Gamble,PGHH,FMCG,P&G|Procter Gamble|PG India
+Phoenix Mills,PHOENIXLTD,Real Estate,Phoenix|Phoenix Mills|PhoenixMills
+Pidilite Industries,PIDILITIND,Chemicals,Pidilite|Fevicol|PidiliteInd|Pidilite Industries
+PI Industries,PIIND,Basic Materials,PI Industries|PIIND
+Punjab National Bank,PNB,Banking,PNB|Punjab National|Punjab Bank
+PNB Housing Finance,PNBHOUSING,NBFC,PNB Housing|PNBHousing
+PNC Infratech,PNCINFRA,Infrastructure,PNC|PNC Infra|PNC Infratech
+PB Fintech,POLICYBZR,Fintech,PolicyBazaar|PB Fintech|Policybazaar|PaisaBazaar
+Polycab India,POLYCAB,Capital Goods,Polycab|Polycab India
+Power Grid Corporation,POWERGRID,Power,Power Grid|PowerGrid|PGCIL
+Hitachi Energy India,POWERINDIA,Industrials,Hitachi Energy India|POWERINDIA|Hitachi
+PREMIER ENERGIES LIMITED,PREMIERENE,Technology,PREMIER|PREMIER ENERGIES LIMITED|PREMIERENE
+Prestige Estates,PRESTIGE,Real Estate,Prestige|Prestige Estates|PrestigeEstates
+PVR Inox,PVRINOX,Media,PVR|Inox|PVR Inox|PVRInox
+Radico Khaitan,RADICO,Consumer Defensive,RADICO|Radico Khaitan|Radico
+The Ramco Cements,RAMCOCEM,Cement,Ramco|Ramco Cement|RamcoCement
+Ratnamani Metals,RATNAMANI,Metal & Mining,Ratnamani|Ratnamani Metals
+Raymond,RAYMOND,Textile,Raymond|Raymond Ltd|Raymond Textiles
 Restaurant Brands Asia,RBA.NS,Consumer Discretionary,RESTAURANT BRANDS ASIA LTD|RBA|Restaurant Brands Asia|Burger King India|Burger King
+RBL Bank,RBLBANK,Banking,RBL|RBL Bank
+REC Limited,RECLTD,Finance,REC|Rural Electrification|RECLtd
+Reliance Industries,RELIANCE,Energy,RIL|Reliance|Reliance Ind|Mukesh Ambani company
+Repco Home Finance,REPCOHOME,NBFC,Repco|Repco Home Finance
+Rail Vikas Nigam,RVNL,Industrials,RVNL|Rail Vikas Nigam|Rail
+Steel Authority of India,SAIL,Metal & Mining,SAIL|Steel Authority|SAIL India
+Sammaan Capital,SAMMAANCAP,Financial Services,Sammaan Capital|Sammaan|SAMMAANCAP
+Sapphire Foods,SAPPHIRE,Retail,Sapphire Foods|KFC India
+SBI Cards and Payment Services,SBICARD,Financial Services,SBICARD|SBI Cards and Payment Services
+SBI Life,SBILIFE,Insurance,SBI Life|SBILife|SBI Insurance
+State Bank of India,SBIN,Banking,SBI|State Bank|SBI Bank
+Schaeffler India,SCHAEFFLER,Capital Goods,Schaeffler|Schaeffler India|FAG Bearings
+Senco Gold,SENCO,Retail,Senco|Senco Gold
+Shree Cement,SHREECEM,Cement,Shree Cement|ShreeCement
+Shriram Finance,SHRIRAMFIN,NBFC,Shriram|Shriram Finance|Shriram Transport
+SIDBI,SIDBI,Finance,SIDBI|Small Industries Development Bank
+Siemens India,SIEMENS,Capital Goods,Siemens|Siemens India
+SJVN,SJVN,Power,SJVN|Satluj Jal Vidyut
+SKF India,SKFINDIA,Capital Goods,SKF|SKF India
+Sobha,SOBHA,Real Estate,Sobha|Sobha Ltd|Sobha Developers
+Solar Industries,SOLARINDS,Capital Goods,Solar Industries|SolarInd
+Sona BLW Precision Forgings,SONACOMS,Consumer Cyclical,SONACOMS|Sona BLW Precision Forgings|Sona
+Spandana Sphoorty,SPANDANA,NBFC,Spandana|Spandana Sphoorty
+SpiceJet,SPICEJET,Aviation,SpiceJet|Spice Jet
+SRF,SRF,Chemicals,SRF|SRF Ltd
+Star Health,STARHEALTH,Insurance,Star Health|StarHealth|Star Health Insurance
+Sudarshan Chemical,SUDARSCHEM,Chemicals,Sudarshan|Sudarshan Chemical
+Sun Pharmaceutical,SUNPHARMA,Pharma,Sun Pharma|SunPharma|Sun Pharmaceutical
+Sunteck Realty,SUNTECK,Real Estate,Sunteck|Sunteck Realty
+Sun TV Network,SUNTV,Media,Sun TV|SunTV|Sun Network
+The Supreme Industries,SUPREMEIND,Industrials,The Supreme Industries|SUPREMEIND
+Suzlon Energy,SUZLON,Industrials,SUZLON|Suzlon|Suzlon Energy
+SWIGGY LIMITED,SWIGGY,Consumer Cyclical,SWIGGY LIMITED|SWIGGY
+Tata Chemicals,TATACHEM,Chemicals,Tata Chemicals|TataChemicals
+Tata Communications,TATACOMM,Telecom,Tata Comm|TataComm|Tata Communications
+Tata Consumer Products,TATACONSUM,FMCG,Tata Consumer|TataConsumer|Tata Tea|Tata Salt
+Tata Elxsi,TATAELXSI,Technology,Tata Elxsi|TataElxsi
+Tata Power,TATAPOWER,Power,Tata Power|TataPower
+Tata Steel,TATASTEEL,Metal & Mining,Tata Steel|TataSteel|Tata Iron
+Infosonics,TATATECH,Technology,Tata Technologies|TataTech
+TCI Express,TCIEXP,Logistics,TCI|TCI Express|TCIExpress
+Tata Consultancy Services,TCS,Technology,TCS|Tata Consultancy|Tata IT
+Tech Mahindra,TECHM,Technology,Tech Mahindra|TechM|TechMahindra
+Thermax,THERMAX,Capital Goods,Thermax|Thermax Ltd
+Tube Investments of India,TIINDIA,Industrials,TIINDIA|Tube Investments of India|Tube
+Timken India,TIMKEN,Capital Goods,Timken|Timken India
+Titan Company,TITAN,Retail,Titan|Titan Company|Tanishq|Fastrack
+Tata Motors Passenger Vehicles,TMPV,Consumer Cyclical,TMPV|Tata|Tata Motors Passenger Vehicles
+Torrent Pharmaceuticals,TORNTPHARM,Pharma,Torrent Pharma|TorrentPharma|Torrent
+Torrent Power,TORNTPOWER,Power,Torrent Power|TorrentPower
+Tracxn Technologies,TRACXN,Technology,Tracxn|Tracxn Technologies
+Trent,TRENT,Retail,Trent|Westside|Trent Ltd|Zudio
+Trident,TRIDENT,Textile,Trident|Trident Ltd
+TVS Motor,TVSMOTOR,Automobile,TVS|TVS Motor|TVSMotor
+United Breweries,UBL,FMCG,UBL|United Breweries|Kingfisher Beer
+Ultratech Cement,ULTRACEMCO,Cement,Ultratech|UltraTech|UltratechCement|Aditya Birla Cement
+Union Bank of India,UNIONBANK,Banking,Union Bank|UnionBank
+United Spirits,UNITDSPR,FMCG,United Spirits|Diageo India|McDowell
+Uno Minda,UNOMINDA,Consumer Cyclical,Uno Minda|UNOMINDA
+UPL,UPL,Basic Materials,UPL
+Varun Beverages,VBL,FMCG,Varun Beverages|VBL|Pepsi bottler
+Vedanta,VEDL,Metal & Mining,Vedanta|VEDL|Vedanta Ltd|Cairn India
+Vinati Organics,VINATIORGA,Chemicals,Vinati|Vinati Organics
+Vishal Mega Mart,VMM,Consumer Cyclical,Vishal Mega Mart|VMM
+Voltas,VOLTAS,Capital Goods,Voltas|Voltas Ltd|Tata AC
+VRL Logistics,VRLLOG,Logistics,VRL|VRL Logistics|VRLLogistics
+Vardhman Textiles,VTL,Textile,Vardhman|Vardhman Textiles|VTL
+WAAREE ENERGIES LIMITED,WAAREEENER,Technology,WAAREE ENERGIES LIMITED|WAAREE|WAAREEENER
+Westlife Foodworld,WESTLIFE,Retail,Westlife|McDonalds India|McDonald's India
+Whirlpool India,WHIRLPOOL,Capital Goods,Whirlpool|Whirlpool India
+Wipro,WIPRO,Technology,Wipro|Wipro IT|Wipro Ltd
+Yes Bank,YESBANK,Banking,Yes|Yes Bank
+Zee Entertainment,ZEEL,Media,Zee|Zee Entertainment|ZEEL|Zee TV
+Zensar Technologies,ZENSARTECH,Technology,Zensar|Zensar Technologies
+Zydus Lifesciences,ZYDUSLIFE,Pharma,Zydus|Cadila|Zydus Cadila|Zydus Life

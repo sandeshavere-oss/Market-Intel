@@ -43,13 +43,13 @@ def init_db():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS price_history (
             symbol TEXT,
-            trade_date DATE,
+            date DATE,
             open REAL,
             high REAL,
             low REAL,
             close REAL,
             volume INTEGER,
-            PRIMARY KEY (symbol, trade_date)
+            PRIMARY KEY (symbol, date)
         )
     """)
     conn.commit()
@@ -173,7 +173,7 @@ def fetch_and_store_history(days_back=180):
                     
                 if rows_to_insert:
                     cursor.executemany("""
-                        INSERT OR REPLACE INTO price_history (symbol, trade_date, open, high, low, close, volume)
+                        INSERT OR REPLACE INTO price_history (symbol, date, open, high, low, close, volume)
                         VALUES (?, ?, ?, ?, ?, ?, ?)
                     """, rows_to_insert)
                     total_inserted += len(rows_to_insert)

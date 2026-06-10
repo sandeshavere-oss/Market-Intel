@@ -65,10 +65,10 @@ def get_trading_prices(company, start_date_str):
         
         if has_history:
             cursor.execute("""
-                SELECT trade_date as date, close 
+                SELECT date, close 
                 FROM price_history 
-                WHERE symbol = ? AND trade_date >= ? 
-                ORDER BY trade_date ASC
+                WHERE symbol = ? AND date >= ? 
+                ORDER BY date ASC
             """, (company, start_date_str))
         else:
             cursor.execute("""
@@ -85,14 +85,14 @@ def get_trading_prices(company, start_date_str):
         
     conn.close()
     return rows
-
+ 
 def get_nifty_price_on_date(date_str):
     if not DB_PRICE_PATH.exists():
         return None
     conn = sqlite3.connect(DB_PRICE_PATH, timeout=60.0)
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT close FROM price_history WHERE symbol = 'NIFTY50' AND trade_date = ?", (date_str,))
+        cursor.execute("SELECT close FROM price_history WHERE symbol = 'NIFTY50' AND date = ?", (date_str,))
         row = cursor.fetchone()
         if row:
             return row[0]

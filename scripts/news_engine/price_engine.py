@@ -79,8 +79,13 @@ def fetch_and_store_prices(symbols, days_back=180):
 
     for i in range(0, len(symbols), batch_size):
         batch = symbols[i:i + batch_size]
-        # Append .NS suffix for Indian NSE markets
-        ticker_map = {f"{sym}.NS": sym for sym in batch}
+        # Append .NS suffix for Indian NSE markets (with NIFTY50 override)
+        ticker_map = {}
+        for sym in batch:
+            if sym == "NIFTY50":
+                ticker_map["^NSEI"] = "NIFTY50"
+            else:
+                ticker_map[f"{sym}.NS"] = sym
         tickers_str = " ".join(ticker_map.keys())
 
         log_message("INFO", f"Downloading batch {i//batch_size + 1}: {tickers_str}")

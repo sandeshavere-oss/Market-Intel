@@ -223,7 +223,12 @@ def download_and_store():
         # Batch symbols in chunks of batch_size
         for i in range(0, len(syms), batch_size):
             chunk = syms[i:i + batch_size]
-            ticker_map = {f"{sym}.NS": sym for sym in chunk}
+            ticker_map = {}
+            for sym in chunk:
+                if sym == "NIFTY50":
+                    ticker_map["^NSEI"] = "NIFTY50"
+                else:
+                    ticker_map[f"{sym}.NS"] = sym
             tickers_str = " ".join(ticker_map.keys())
             
             log_message("INFO", f"Downloading batch: {tickers_str}")
