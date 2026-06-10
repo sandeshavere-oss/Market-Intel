@@ -14,7 +14,7 @@ RSS Feed Read -> Limit -> Set -> OpenAI HTTP Request -> Parse AI JSON -> SQLite
 
 1. Create the SQLite database file:
 
-   `D:\MARKET_INTEL\DATABASE\market_intel.db`
+   `D:\MARKET_INTEL\database\market_intel.db`
 
 2. Run `market_intel_schema.sql` once on that database.
 
@@ -28,7 +28,7 @@ RSS Feed Read -> Limit -> Set -> OpenAI HTTP Request -> Parse AI JSON -> SQLite
 
 6. Open the SQLite node and set database path:
 
-   `D:\MARKET_INTEL\DATABASE\market_intel.db`
+   `D:\MARKET_INTEL\database\market_intel.db`
 
 ## RSS Feed
 

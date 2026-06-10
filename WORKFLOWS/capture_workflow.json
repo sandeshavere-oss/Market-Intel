@@ -369,7 +369,7 @@
     {
       "parameters": {
         "executeOnce": false,
-        "command": "=python \"D:\\MARKET_INTEL\\NEWS_ENGINE\\capture_rss.py\" \"{{ String($json.title || '').replace(/[\"\\r\\n]/g, ' ').replace(/\\s+/g, ' ').trim() }}\" \"{{ String($json.content || '').replace(/[\"\\r\\n]/g, ' ').replace(/\\s+/g, ' ').trim() }}\" \"{{ String($json.link || '').replace(/[\"\\r\\n]/g, '').trim() }}\" \"{{ String($json.source_feed || 'RSS').replace(/[\"\\r\\n]/g, '').trim() }}\" \"{{ String($json.published_at || '').replace(/[\"\\r\\n]/g, '').trim() }}\""
+        "command": "=python \"D:\\MARKET_INTEL\\scripts\\news_engine\\capture_rss.py\" \"{{ String($json.title || '').replace(/[\"\\r\\n]/g, ' ').replace(/\\s+/g, ' ').trim() }}\" \"{{ String($json.content || '').replace(/[\"\\r\\n]/g, ' ').replace(/\\s+/g, ' ').trim() }}\" \"{{ String($json.link || '').replace(/[\"\\r\\n]/g, '').trim() }}\" \"{{ String($json.source_feed || 'RSS').replace(/[\"\\r\\n]/g, '').trim() }}\" \"{{ String($json.published_at || '').replace(/[\"\\r\\n]/g, '').trim() }}\""
       },
       "id": "node-execute-capture",
       "name": "Execute Capture Script",

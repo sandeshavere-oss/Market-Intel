@@ -34,7 +34,7 @@
     },
     {
       "parameters": {
-        "command": "python \"D:\\MARKET_INTEL\\NEWS_ENGINE\\generate_daily_intel.py\""
+        "command": "python \"D:\\MARKET_INTEL\\scripts\\news_engine\\generate_daily_intel.py\""
       },
       "id": "execute-intelligence-id",
       "name": "Execute Daily Intelligence Summary",

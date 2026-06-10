@@ -34,7 +34,7 @@
     },
     {
       "parameters": {
-        "command": "python \"D:\\MARKET_INTEL\\NEWS_ENGINE\\enrich_news.py\""
+        "command": "python \"D:\\MARKET_INTEL\\scripts\\news_engine\\enrich_news.py\""
       },
       "id": "execute-enrichment-id",
       "name": "Execute Enrichment Script",

@@ -34,7 +34,7 @@
     },
     {
       "parameters": {
-        "command": "python \"D:\\MARKET_INTEL\\SOCIAL_ENGINE\\fetch_tweets.py\" | python \"D:\\MARKET_INTEL\\SOCIAL_ENGINE\\save_tweets.py\""
+        "command": "python \"D:\\MARKET_INTEL\\scripts\\social_engine\\fetch_tweets.py\" | python \"D:\\MARKET_INTEL\\scripts\\social_engine\\save_tweets.py\""
       },
       "id": "execute-command-id",
       "name": "Execute Ingestion Pipeline",

@@ -112,7 +112,7 @@
         0,
         -270
       ],
-      "notes": "Set SQLite database path to D:\\MARKET_INTEL\\DATABASE\\market_intel.db"
+      "notes": "Set SQLite database path to D:\\MARKET_INTEL\\database\\market_intel.db"
     },
     {
       "parameters": {
@@ -196,7 +196,7 @@
     {
       "parameters": {
         "executeOnce": false,
-        "command": "=python \"D:\\\\MARKET_INTEL\\\\NEWS_ENGINE\\\\save_bse_event.py\" \"{{ String($json.article_id || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.title || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.company_name || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.event_type || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.sentiment || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ $json.impact_score }}\" \"{{ String($json.link || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.published_at || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.raw_response || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\""
+        "command": "=python \"D:\\\\MARKET_INTEL\\\\scripts\\\\news_engine\\\\save_bse_event.py\" \"{{ String($json.article_id || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.title || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.company_name || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.event_type || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\" \"{{ String($json.sentiment || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ $json.impact_score }}\" \"{{ String($json.link || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.published_at || '').replace(/[\\\"\\\\r\\\\n]/g, '').trim() }}\" \"{{ String($json.raw_response || '').replace(/[\\\"\\\\r\\\\n]/g, ' ').replace(/\\\\s+/g, ' ').trim() }}\""
       },
       "id": "execute-save-bse-id",
       "name": "Execute Command",
