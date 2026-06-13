@@ -20,22 +20,28 @@ This document outlines the milestones, sprin goals, risk metrics, and future dev
 *   **Unknown Symbol Recovery (Phase 6.1):** Recovered 100% of 'Unknown' takeover events, mapped tickers in SQLite, and expanded `company_master.csv`.
 *   **Event Table Unification (Phase 6.2):** Unified `corporate_events`, `board_meetings`, and `financial_results` tables using SQL UNION and Python deduplication.
 *   **Post-Implementation Validation (Phase 7):** Validated historical signal consistency and verified zero regression.
+### Market Impact & Options Layer (v4.0.0)
+*   **Knowledge Graph (Phase 8.1):** Deployed directed graph schemas, traversal, sign propagation, and depth-based decay.
+*   **Options Greeks Layer (Phase 8.2):** Built options chain scraper, Black-Scholes Greeks calculators, and IV percentile calculators in `price_data.db`.
+*   **Signal Score v2.1 (Phase 8.3):** Rebalanced weights to include PCR/OI Skew (10%) and IV Reversal Penalty (15-point event bonus discount under high IV).
 
 ---
 
 ## 2. Current Sprint
 
-*   **Benchmark Relative Returns:** 
-    *   Compare stock returns against the Nifty 50 index over the matching 5-day and 10-day periods.
-    *   Isolate systematic market movements (beta) from idiosyncratic signal returns to measure pure Alpha ($\alpha$).
+*   **Benchmark Relative Returns:**
+    *   Integrate Nifty 50 relative return adjustments ($\alpha$ calculations) into `validate_signals.py`.
+*   **Blind Out-of-Sample Testing:**
+    *   Run a 30-day forward test on live F&O names using the v2.1 scoring formula.
 
 ---
 
 ## 3. Next Sprint
 
 *   **LLM Decoupling Queue:**
-    *   Develop a lightweight SQLite-based job queue to separate fast news capture scripts from high-latency local Ollama LLM enrichment processes.
-    *   Prevents network timeouts and data drops when the local LLM is backlogged.
+    *   Develop a lightweight SQLite-based job queue to separate news capturing from high-latency LLM processing.
+*   **Automatic Relation Extraction:**
+    *   Train/prompt local LLM to dynamically output new nodes/edges from incoming articles for automatic graph expansion.
 
 ---
 

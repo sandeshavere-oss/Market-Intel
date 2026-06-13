@@ -144,17 +144,36 @@ def deterministic_match(text):
     return sorted(list(matched_companies)), sorted(list(matched_themes))
 
 def main():
-    if len(sys.argv) < 3:
-        logger.error("Usage: python capture_rss.py <title> <content> [link] [source_feed]")
-        sys.exit(1)
+    # Try to parse base64 payload if a single arg is provided
+    base64_payload = None
+    if len(sys.argv) == 2:
+        try:
+            import base64
+            import json
+            decoded = base64.b64decode(sys.argv[1].encode('utf-8')).decode('utf-8')
+            base64_payload = json.loads(decoded)
+        except Exception as e:
+            logger.warning(f"Failed to decode base64 argument: {e}")
+            pass
 
-    title = sys.argv[1].lstrip("=")
-    content = sys.argv[2]
-    link = sys.argv[3] if len(sys.argv) > 3 else ""
-    source_feed = sys.argv[4] if len(sys.argv) > 4 else "RSS"
+    if base64_payload is not None:
+        title = base64_payload.get("title", "").lstrip("=")
+        content = base64_payload.get("content", "")
+        link = base64_payload.get("link", "")
+        source_feed = base64_payload.get("source_feed", "RSS")
+        source_timestamp = base64_payload.get("source_timestamp", "")
+    else:
+        if len(sys.argv) < 3:
+            logger.error("Usage: python capture_rss.py <title> <content> [link] [source_feed]")
+            sys.exit(1)
+
+        title = sys.argv[1].lstrip("=")
+        content = sys.argv[2]
+        link = sys.argv[3] if len(sys.argv) > 3 else ""
+        source_feed = sys.argv[4] if len(sys.argv) > 4 else "RSS"
+        source_timestamp = sys.argv[5] if len(sys.argv) > 5 else ""
 
     # Extract source_timestamp and system_timestamp (Phase 2 requirement)
-    source_timestamp = sys.argv[5] if len(sys.argv) > 5 else ""
     if not source_timestamp:
         source_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     system_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

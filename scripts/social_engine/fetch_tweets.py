@@ -6,7 +6,6 @@ import re
 import time
 from pathlib import Path
 from datetime import datetime
-from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 
 # Resolve paths
@@ -14,9 +13,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 COOKIES_PATH = Path(__file__).resolve().parent / "twitter_cookies.json"
 LOG_DIR = BASE_DIR / "logs"
 LOG_FILE = LOG_DIR / "twitter_engine.log"
-
-# Load environment variables
-load_dotenv(BASE_DIR / ".env")
 
 # Configure logging
 logging.basicConfig(
@@ -58,11 +54,16 @@ def fetch_tweets(query=None):
         try:
             logging.info("Navigating to x.com/home to verify session validity...")
             page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=30000)
-            page.wait_for_timeout(5000)
             
-            # Check if redirected to login page or if home timeline is blocked
-            is_login = "login" in page.url or page.locator('input[autocomplete="username"]').is_visible()
-            has_tweets = page.locator('article[data-testid="tweet"]').first.is_visible()
+            # Dynamically wait up to 15 seconds for either the login page or a tweet to load
+            is_login = False
+            has_tweets = False
+            for _ in range(30):
+                page.wait_for_timeout(500)
+                is_login = "login" in page.url or page.locator('input[autocomplete="username"]').first.is_visible()
+                has_tweets = page.locator('article[data-testid="tweet"]').first.is_visible()
+                if is_login or has_tweets:
+                    break
             
             if is_login or not has_tweets:
                 logging.error("Session expired or invalid. Bypassing automation to avoid locks.")

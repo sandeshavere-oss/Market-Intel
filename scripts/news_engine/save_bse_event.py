@@ -65,21 +65,44 @@ def classify_event_category(title):
     return "General Announcement"
 
 def main():
-    if len(sys.argv) < 10:
-        print("ERROR: Missing arguments. Expected 9 arguments.")
-        logger.error(f"Execution failed: Expected 9 arguments, got {len(sys.argv) - 1}.")
-        sys.exit(1)
+    # Try to parse base64 payload if a single arg is provided
+    base64_payload = None
+    if len(sys.argv) == 2:
+        try:
+            import base64
+            import json
+            decoded = base64.b64decode(sys.argv[1].encode('utf-8')).decode('utf-8')
+            base64_payload = json.loads(decoded)
+        except Exception as e:
+            logger.warning(f"Failed to decode base64 argument: {e}")
+            pass
 
-    # Extract raw arguments
-    raw_article_id = sys.argv[1]
-    raw_title = sys.argv[2]
-    raw_company_name = sys.argv[3]
-    raw_event_type = sys.argv[4]
-    raw_sentiment = sys.argv[5]
-    raw_impact_score = sys.argv[6]
-    raw_link = sys.argv[7]
-    raw_published_at = sys.argv[8]
-    raw_response = sys.argv[9]
+    if base64_payload is not None:
+        raw_article_id = base64_payload.get("article_id", "")
+        raw_title = base64_payload.get("title", "")
+        raw_company_name = base64_payload.get("company_name", "")
+        raw_event_type = base64_payload.get("event_type", "")
+        raw_sentiment = base64_payload.get("sentiment", "")
+        raw_impact_score = base64_payload.get("impact_score", "5")
+        raw_link = base64_payload.get("link", "")
+        raw_published_at = base64_payload.get("published_at", "")
+        raw_response = base64_payload.get("raw_response", "")
+    else:
+        if len(sys.argv) < 10:
+            print("ERROR: Missing arguments. Expected 9 arguments.")
+            logger.error(f"Execution failed: Expected 9 arguments, got {len(sys.argv) - 1}.")
+            sys.exit(1)
+
+        # Extract raw arguments
+        raw_article_id = sys.argv[1]
+        raw_title = sys.argv[2]
+        raw_company_name = sys.argv[3]
+        raw_event_type = sys.argv[4]
+        raw_sentiment = sys.argv[5]
+        raw_impact_score = sys.argv[6]
+        raw_link = sys.argv[7]
+        raw_published_at = sys.argv[8]
+        raw_response = sys.argv[9]
 
     # Clean Inputs
     # 1. article_id & title
@@ -124,45 +147,74 @@ def main():
         logger.error(f"Execution failed: Database file not found at {DB_PATH}")
         sys.exit(1)
 
-    conn = sqlite3.connect(DB_PATH, timeout=30)
-    cursor = conn.cursor()
+    import time
+    import random
 
-    try:
-        cursor.execute(
-            """
-            INSERT OR IGNORE INTO corporate_events
-            (article_id, title, company_name, bse_code, event_type, event_category, 
-             sentiment, impact_score, link, published_at, raw_ollama_response)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                article_id,
-                title,
-                company_name,
-                bse_code,
-                event_type,
-                event_category,
-                sentiment,
-                impact_score,
-                link,
-                published_at,
-                raw_response
+    max_retries = 5
+    retry_delay = 1.0
+    success = False
+
+    for attempt in range(max_retries):
+        conn = None
+        try:
+            conn = sqlite3.connect(DB_PATH, timeout=60)
+            conn.execute("PRAGMA journal_mode=WAL")
+            cursor = conn.cursor()
+
+            cursor.execute(
+                """
+                INSERT OR IGNORE INTO corporate_events
+                (article_id, title, company_name, bse_code, event_type, event_category, 
+                 sentiment, impact_score, link, published_at, raw_ollama_response)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    article_id,
+                    title,
+                    company_name,
+                    bse_code,
+                    event_type,
+                    event_category,
+                    sentiment,
+                    impact_score,
+                    link,
+                    published_at,
+                    raw_response
+                )
             )
-        )
-        
-        # Check if row was inserted or ignored as duplicate
-        if cursor.rowcount == 0:
-            print("DUPLICATE")
-        else:
-            conn.commit()
-            print("SAVED")
             
-    except Exception as ex:
-        conn.rollback()
-        print(f"ERROR: Database write failed. {ex}")
-        logger.error(f"Failed to insert event for article_id {article_id}: {ex}", exc_info=True)
-    finally:
-        conn.close()
+            # Check if row was inserted or ignored as duplicate
+            if cursor.rowcount == 0:
+                print("DUPLICATE")
+            else:
+                conn.commit()
+                print("SAVED")
+            
+            success = True
+            break
+            
+        except sqlite3.OperationalError as ex:
+            if "locked" in str(ex).lower() and attempt < max_retries - 1:
+                sleep_time = retry_delay * (2 ** attempt) + random.uniform(0.1, 0.5)
+                logger.warning(f"Database locked, retrying in {sleep_time:.2f}s (attempt {attempt+1}/{max_retries}). Error: {ex}")
+                time.sleep(sleep_time)
+            else:
+                print(f"ERROR: Database write failed. {ex}")
+                logger.error(f"Failed to insert event for article_id {article_id}: {ex}", exc_info=True)
+                sys.exit(1)
+        except Exception as ex:
+            print(f"ERROR: Database write failed. {ex}")
+            logger.error(f"Failed to insert event for article_id {article_id}: {ex}", exc_info=True)
+            sys.exit(1)
+        finally:
+            if conn:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
+
+    if not success:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

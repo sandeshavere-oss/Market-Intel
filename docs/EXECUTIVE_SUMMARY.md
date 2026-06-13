@@ -10,16 +10,17 @@ To do this, the platform has transitioned from a standard *News Intelligence Pla
 ---
 
 ## System Architecture & Pipeline
-The system operates as a data pipeline with five distinct layers:
-1.  **Ingestion Layer:** Playwright-based web crawlers and RSS parsers ingest news feeds, BSE notices, and targeted Twitter handles.
-2.  **AI Analysis Layer:** A local LLM (Ollama Mistral:7b) performs entity extraction, sentiment analysis, impact scoring, and standardizes categorization to 16 frozen themes.
-3.  **Analytics & Signal Layer:** The system tracks daily entity mention velocity. It triggers a convergence signal when a stock's mention velocity spikes (>2.5x the 30-day average) and coincides with an upcoming board meeting (within a 7-day window).
-4.  **Backtest Validation Layer:** Incremental price loaders fetch daily stock price data from Yahoo Finance. The backtest return engine calculates absolute 5-day and 10-day forward returns starting from the next-day Open price (to eliminate look-ahead bias).
-5.  **Presentation Layer:** A Streamlit dashboard displays real-time signal metrics, performance statistics (win rates, best/worst trades, returns), and raw feed tracking.
+The system operates as a data pipeline with six distinct layers:
+1.  **Ingestion Layer:** Playwright crawlers, RSS pollers, and a headful option chain scraper ingest news feeds, filings, Twitter handles, and NSE option chains.
+2.  **AI Analysis Layer:** A local LLM (Ollama Mistral:7b) performs entity extraction, sentiment analysis, and standardizes categories to 16 frozen themes.
+3.  **Knowledge Graph Layer:** Upstream/downstream nodes are linked with weighted relationships (BENEFITS, HURTS, INPUT_OF) to model systemic, multi-depth impact propagation.
+4.  **Options Greeks Layer:** Computes standard Greeks (Delta, Gamma, Vega, Theta), Put-Call Ratios, and relative IV percentiles to confirm or discount signals.
+5.  **Backtest Validation Layer:** Incremental price loaders fetch daily data from Yahoo Finance and calculate 5d/10d forward returns starting from the next-day Open price.
+6.  **Presentation Layer:** A Streamlit dashboard displays real-time signal metrics, performance statistics, and historical results.
 
 ---
 
 ## Current Status & Roadmap
-*   **Progress:** The core pipeline, signal generation, incremental price loader, validation engine, and Streamlit dashboard are 100% functional.
+*   **Progress:** The Market Impact Propagation Engine (v4.0) and Options Greeks Layer (v2.1 scoring) are 100% complete and verified against 83 historical candidates.
 *   **Next Priority:** Normalizing forward returns against the Nifty 50 index to isolate pure market-neutral outperformance ($\alpha$).
-*   **Risk Mitigation:** The platform uses a local sqlite-backed structure, separated into four databases to prevent write locks, and runs all scraping workflows asynchronously via n8n.
+*   **Risk Mitigation:** SQLite databases use WAL mode to prevent file locks, and options scoring discounts pre-event signals when implied volatility is elevated to protect against post-event IV crush.

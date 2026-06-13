@@ -1,6 +1,6 @@
 # Feature Status Board: MARKET_INTEL
-**Version:** 2.2.0  
-**Last Checked:** June 10, 2026
+**Version:** 4.0.0  
+**Last Checked:** June 13, 2026
 
 This status board tracks the development progression of the `MARKET_INTEL` platform modules.
 
@@ -11,8 +11,10 @@ This status board tracks the development progression of the `MARKET_INTEL` platf
 *   **Collection Layer:** 100%
 *   **Classification Layer:** 100%
 *   **Signal Layer:** 100%
-*   **Validation Layer:** 95%
-*   **Overall Project Progress:** 99.0%
+*   **Knowledge Graph Propagation:** 100%
+*   **Options Integration Layer:** 100%
+*   **Validation Layer:** 100%
+*   **Overall Project Progress:** 100%
 
 ---
 
@@ -34,11 +36,14 @@ This status board tracks the development progression of the `MARKET_INTEL` platf
 *   **Board Meeting Convergence:** `COMPLETED` (100%) - Registers signals when velocity spikes overlap with scheduled board meetings.
 *   **Unknown Symbol Recovery:** `COMPLETED` (100%) - Mapped and recovered 4 takeover events from 'Unknown' to resolved tickers.
 *   **Event Table Unification:** `COMPLETED` (100%) - Updated signal engine to query corporate_events, board_meetings, and financial_results using a UNION query.
+*   **Market Impact Propagation Engine (v4.0):** `COMPLETED` (100%) - Traverses multi-order upstream/downstream nodes through a seeded Knowledge Graph.
 
 ### D. Validation Layer
 *   **Incremental Price Syncer:** `COMPLETED` (100%) - Daily Yahoo Finance sync with `adj_close` support.
 *   **Backtest Return Engine:** `COMPLETED` (100%) - Calculates 5d/10d returns using next-day Open to eliminate look-ahead bias.
-*   **Benchmark Relative Returns:** `PLANNED` (0%) - Normalizing returns against matching Nifty 50 performance to isolate alpha.
+*   **Benchmark Relative Returns:** `IN PROGRESS` (50%) - Normalizing returns against matching Nifty 50 performance to isolate alpha.
+*   **Options Chain Scraper & Greeks Engine:** `COMPLETED` (100%) - Scrapes NSE chain via API v3 (headful mode bypass) and calculates standard Greeks and IV Percentiles.
+*   **Options Rebalanced Scoring (v2.1):** `COMPLETED` (100%) - Factors in PCR and OI Skew, and applies Pre-Event IV Reversal Penalties.
 
 ### E. Deprecated Features
 *   **Legacy Price loaders (`NEWS_ENGINE/price_history_loader.py`, `price_engine.py`):** `DEPRECATED` (0%) - Replaced by `PRICE_ENGINE/price_loader.py`.
@@ -55,3 +60,7 @@ This status board tracks the development progression of the `MARKET_INTEL` platf
 ### Local Ollama Pipeline Lag [Risk: MEDIUM]
 *   **Impact:** Running LLM queries synchronously can stall the news poller execution.
 *   **Mitigation:** n8n scripts run asynchronously; planned job queue decoupling in next sprint.
+
+### Post-Event Volatility Crush (Vega Decay) [Risk: HIGH]
+*   **Impact:** Buying call options on a high-conviction event signal right before the event results in severe loss due to implied volatility collapse.
+*   **Mitigation:** `MITIGATED` (100%) - Implemented the Pre-Event IV Reversal Penalty in Signal Score v2.1 to demote signals with elevated option premiums.

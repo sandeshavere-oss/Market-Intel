@@ -46,11 +46,18 @@ def init_db():
             event_date TEXT,
             event_description TEXT,
             signal_strength TEXT,
+            signal_score REAL DEFAULT 0.0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             UNIQUE(company, signal_date)
         )
     """)
     conn.commit()
+    try:
+        cursor.execute("ALTER TABLE event_signals ADD COLUMN signal_score REAL DEFAULT 0.0;")
+        conn.commit()
+        log_message("INFO", "Added signal_score column to event_signals table.")
+    except sqlite3.OperationalError:
+        pass
     conn.close()
 
 def load_company_lookup():
@@ -157,6 +164,223 @@ def get_twitter_velocities(target_date_str, lookup):
         }
         
     return twitter_velocities
+
+def load_company_sectors():
+    MASTER_FILE = BASE_DIR / "data" / "mappings" / "company_master.csv"
+    sectors = {}
+    if not MASTER_FILE.exists():
+        log_message("WARNING", f"company_master.csv not found for sectors")
+        return sectors
+    try:
+        with open(MASTER_FILE, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                symbol = row.get("symbol", "").strip()
+                sector = row.get("sector", "").strip()
+                if symbol:
+                    sectors[symbol] = sector
+    except Exception as e:
+        log_message("ERROR", f"Failed to load company sectors: {e}")
+    return sectors
+
+def get_options_data_for_signal(symbol, date_str):
+    """
+    Queries options summary and nearest expiry chain data for a symbol on/before date_str.
+    """
+    db_price_path = BASE_DIR / "database" / "price_data.db"
+    if not db_price_path.exists():
+        return None
+        
+    conn = sqlite3.connect(db_price_path)
+    cursor = conn.cursor()
+    
+    try:
+        # 1. Fetch latest options summary on or before date_str
+        cursor.execute("""
+            SELECT pcr, underlying_price, snapshot_timestamp
+            FROM options_summary
+            WHERE symbol = ? AND date(snapshot_timestamp) <= ?
+            ORDER BY snapshot_timestamp DESC
+            LIMIT 1
+        """, (symbol, date_str))
+        row = cursor.fetchone()
+        
+        if not row:
+            conn.close()
+            return None
+            
+        pcr, spot_price, snapshot_ts = row
+        
+        # 2. Get nearest expiry date for this snapshot
+        cursor.execute("""
+            SELECT MIN(expiry)
+            FROM options_chain
+            WHERE symbol = ? AND snapshot_timestamp = ?
+        """, (symbol, snapshot_ts))
+        expiry_row = cursor.fetchone()
+        if not expiry_row or not expiry_row[0]:
+            conn.close()
+            return {"pcr": pcr, "implied_volatility": 0.0, "iv_percentile": None, "oi_skew": 0.0}
+            
+        nearest_expiry = expiry_row[0]
+        
+        # 3. Fetch ATM CE and PE rows (closest to spot price)
+        cursor.execute("""
+            SELECT implied_volatility, iv_percentile, change_in_oi, option_type
+            FROM options_chain
+            WHERE symbol = ? AND snapshot_timestamp = ? AND expiry = ?
+            ORDER BY ABS(strike - ?) ASC
+            LIMIT 2
+        """, (symbol, snapshot_ts, nearest_expiry, spot_price))
+        
+        atm_rows = cursor.fetchall()
+        
+        iv_sum = 0.0
+        iv_count = 0
+        iv_percentile = None
+        call_oi_change = 0
+        put_oi_change = 0
+        
+        for iv, ivp, coi_chg, opt_type in atm_rows:
+            if iv and iv > 0.0:
+                iv_sum += iv
+                iv_count += 1
+                if ivp is not None:
+                    iv_percentile = ivp
+            if opt_type == "CE":
+                call_oi_change += coi_chg or 0
+            else:
+                put_oi_change += coi_chg or 0
+                
+        avg_iv = iv_sum / iv_count if iv_count > 0 else 0.0
+        
+        # OI Skew
+        denom = abs(call_oi_change) + abs(put_oi_change)
+        oi_skew = (call_oi_change - put_oi_change) / denom if denom > 0 else 0.0
+        
+        conn.close()
+        return {
+            "pcr": pcr,
+            "implied_volatility": avg_iv,
+            "iv_percentile": iv_percentile,
+            "oi_skew": oi_skew
+        }
+    except Exception as e:
+        log_message("WARNING", f"Failed to query options data for {symbol}: {e}")
+        if conn:
+            conn.close()
+        return None
+
+def score_signal(comp, velocity, today_count, avg_count, has_event, event_type, target_date_str, cur_market, options_data=None):
+    val_vel = min(max((velocity - 2.5) / 7.5, 0.0), 1.0) * 100.0
+    val_count = min(max((today_count - 2) / 18.0, 0.0), 1.0) * 100.0
+    
+    sectors = load_company_sectors()
+    sec = sectors.get(comp, "Unknown")
+    
+    theme_map = {
+        "Financial Services": "Banking",
+        "Energy": "Energy",
+        "Utilities": "Energy",
+        "Industrials": "Digital Infrastructure",
+        "Information Technology": "Technology",
+        "Consumer Discretionary": "Capital Markets",
+        "Consumer Staples": "Capital Markets",
+        "Healthcare": "Pharma",
+        "Materials": "Metals & Mining",
+        "Telecommunication": "Telecom"
+    }
+    theme = theme_map.get(sec, "Macro Economy")
+    
+    z_score = 0.0
+    try:
+        cur_market.execute("SELECT z_score FROM theme_velocity WHERE theme = ? AND date = ?", (theme, target_date_str))
+        row = cur_market.fetchone()
+        if row and row[0] is not None:
+            z_score = row[0]
+    except Exception as e:
+        log_message("WARNING", f"Failed to fetch theme Z-score for {theme}: {e}")
+        
+    val_z = min(max(z_score / 4.0, 0.0), 1.0) * 100.0
+    
+    # Options-implied Event-Risk Discount for Corporate Events (Tier 1)
+    val_event = 100.0 if has_event else 0.0
+    val_options = 50.0  # Default neutral options factor score
+    
+    options_present = (options_data is not None and options_data.get("pcr") is not None)
+    
+    if options_present:
+        pcr = options_data["pcr"]
+        oi_skew = options_data.get("oi_skew", 0.0)
+        iv_pct = options_data.get("iv_percentile")
+        iv_abs = options_data.get("implied_volatility", 0.0)
+        
+        # Calculate Options Positioning Score (val_options)
+        # PCR score: PCR < 0.65 is bullish (100 pts), PCR > 1.2 is bearish (0 pts), linear in between
+        if pcr < 0.65:
+            pcr_score = 100.0
+        elif pcr > 1.2:
+            pcr_score = 0.0
+        else:
+            pcr_score = 100.0 - ((pcr - 0.65) / (1.2 - 0.65)) * 100.0
+            
+        # Skew score: oi_skew > 0 confirms bullish trend (+50 pts max), < 0 contradicts (-50 pts max)
+        skew_score = 50.0 + min(max(oi_skew * 50.0, -50.0), 50.0)
+        
+        val_options = 0.6 * pcr_score + 0.4 * skew_score
+        
+        # For Corporate Event signals (Tier 1), apply pre-event IV penalty to val_event
+        if has_event:
+            effective_iv_pct = iv_pct
+            if effective_iv_pct is None and iv_abs > 0.0:
+                # Absolute IV > 22% acts as elevated (85th percentile equivalent)
+                effective_iv_pct = min(max((iv_abs / 30.0) * 100.0, 0.0), 100.0)
+                
+            if effective_iv_pct is not None and effective_iv_pct > 80.0:
+                # Penalty ratio scales from 0% (at 80% percentile) to 100% (at 100% percentile)
+                iv_penalty_ratio = min(max((effective_iv_pct - 80.0) / 20.0, 0.0), 1.0)
+                val_event = 100.0 * (1.0 - iv_penalty_ratio)
+                
+    if sec in ["Defence", "Semiconductor", "Energy", "Green Energy", "Railways", "Financial Services", "Industrials"]:
+        sector_strength = 100.0
+    else:
+        sector_strength = 60.0
+        
+    large_caps = {"RELIANCE", "TCS", "HDFCBANK", "SBIN", "LICI", "ONGC", "BHARTIARTL", "HAL", "BEL", "INFY", "WIPRO", "HCLTECH", "ICICIBANK", "AXISBANK"}
+    if comp in large_caps:
+        mcap_score = 100.0
+    elif sec in ["Healthcare", "Pharma", "Materials"]:
+        mcap_score = 75.0
+    else:
+        mcap_score = 50.0
+        
+    hist_score = 70.0
+    
+    if options_present:
+        # Rebalanced weights (Options 10%, Velocity 20%, Count 10%)
+        score = (
+            0.20 * val_vel +
+            0.10 * val_count +
+            0.20 * val_z +
+            0.15 * val_event +
+            0.10 * sector_strength +
+            0.10 * val_options +
+            0.05 * mcap_score +
+            0.10 * hist_score
+        )
+    else:
+        # Original weights (No options data)
+        score = (
+            0.25 * val_vel +
+            0.15 * val_count +
+            0.20 * val_z +
+            0.15 * val_event +
+            0.10 * sector_strength +
+            0.05 * mcap_score +
+            0.10 * hist_score
+        )
+        
+    return round(score, 2)
 
 def generate_signals(target_date_str=None):
     init_db()
@@ -321,17 +545,20 @@ def generate_signals(target_date_str=None):
                 log_message("INFO", f"🚨 Signal Convergence for {comp}: Velocity Spike ({velocity:.2f}x) + Upcoming {ev['type']} ({ev['days_away']} days away) + Twitter Velocity: {tweet_vol_mult:.2f}x. Conviction: {strength}")
                 
                 try:
+                    options_data = get_options_data_for_signal(comp, target_date_str)
+                    score = score_signal(comp, velocity, today_count, avg_count, True, ev["type"], target_date_str, cur_market, options_data=options_data)
                     cur_market.execute("""
                         INSERT OR REPLACE INTO event_signals (
                             company, signal_date, velocity, today_mentions, avg_mentions,
-                            event_id, event_type, event_date, event_description, signal_strength
+                            event_id, event_type, event_date, event_description, signal_strength, signal_score
                         )
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """, (
                         comp, target_date_str, velocity, today_count, avg_count,
-                        ev["id"], ev["type"], ev["date"], ev["description"], strength
+                        ev["id"], ev["type"], ev["date"], ev["description"], strength, score
                     ))
                     signals_count += 1
+                    log_message("INFO", f"Saved Convergence Signal for {comp} with Score: {score}")
                 except Exception as e:
                     log_message("ERROR", f"Failed to save signal for {comp}: {e}")
                     

@@ -15,6 +15,7 @@ graph TD
         RSS[RSS Feeds]
         BSE[BSE Notices API]
         Twitter[Twitter Crawlers]
+        NSE_Opt[NSE Option Chain API v3]
     end
 
     %% Processing Layer
@@ -23,6 +24,7 @@ graph TD
         CBSE[save_bse_event.py]
         CTWT[save_tweets.py]
         ENR[enrich_news.py / Ollama Mistral:7b]
+        OPT_SCR[options_chain_scraper.py]
     end
 
     %% Database Layer
@@ -35,10 +37,12 @@ graph TD
 
     %% Analytics & Validation Layer
     subgraph Analytics & Validation Layer
+        IMP[impact_engine.py / Knowledge Graph]
         VEL[theme_velocity.py]
         MNT[mention_engine.py]
-        SIG[signal_engine.py]
+        SIG[signal_engine.py / scoring v2.1]
         PRC[price_loader.py]
+        GRK[compute_greeks.py]
         VAL[validate_signals.py]
     end
 
@@ -51,19 +55,25 @@ graph TD
     RSS --> CRSS
     BSE --> CBSE
     Twitter --> CTWT
+    NSE_Opt --> OPT_SCR
 
     CRSS --> DB_MI
     CBSE --> DB_CP
     CBSE --> DB_MI
     CTWT --> DB_TW
+    OPT_SCR --> DB_PR
 
     DB_MI --> ENR --> DB_MI
+    DB_MI --> IMP --> DB_MI
+    
+    DB_PR --> GRK --> DB_PR
 
     DB_MI --> MNT
     DB_MI --> VEL
     DB_CP --> SIG
     MNT --> SIG
     VEL --> SIG
+    DB_PR --> SIG  %% Query PCR & IV penalty
     
     SIG --> DB_MI
     
@@ -132,6 +142,7 @@ erDiagram
         string event_description
         string signal_strength
         datetime created_at
+        float signal_score
     }
 
     SIGNAL_PERFORMANCE {
@@ -147,6 +158,43 @@ erDiagram
         datetime updated_at
     }
 
+    GRAPH_NODES {
+        int id PK
+        string node_name UK
+        string node_type
+        string symbol
+        datetime created_at
+    }
+
+    GRAPH_EDGES {
+        int id PK
+        int source_node_id FK
+        int target_node_id FK
+        string relationship_type
+        float weight
+        datetime created_at
+    }
+
+    IMPACT_SIGNALS {
+        int id PK
+        int article_id
+        string event_type
+        string expectation_changed
+        string first_order_node
+        string target_company
+        string ticker
+        int order_depth
+        string direction
+        float conviction_score
+        float magnitude_score
+        string signal_horizon
+        float pcr_level
+        float iv_percentile
+        string signal_date
+        int processed
+        datetime created_at
+    }
+
     %% price_data.db
     PRICE_HISTORY {
         string symbol PK
@@ -157,6 +205,39 @@ erDiagram
         float close
         float adj_close
         int volume
+        datetime created_at
+    }
+
+    OPTIONS_CHAIN {
+        string symbol PK
+        string expiry PK
+        float strike PK
+        string option_type PK
+        float ltp
+        int oi
+        int change_in_oi
+        int volume
+        float implied_volatility
+        float underlying_price
+        string snapshot_timestamp PK
+        float delta
+        float gamma
+        float theta
+        float vega
+        float iv_percentile
+        datetime created_at
+    }
+
+    OPTIONS_SUMMARY {
+        string symbol PK
+        string expiry PK
+        string snapshot_timestamp PK
+        float pcr
+        float underlying_price
+        int total_call_oi
+        int total_put_oi
+        int total_call_volume
+        int total_put_volume
         datetime created_at
     }
 
@@ -203,6 +284,10 @@ erDiagram
     FINANCIAL_RESULTS ||--o{ EVENT_SIGNALS : "validates"
     EVENT_SIGNALS ||--|| SIGNAL_PERFORMANCE : "evaluates (one-to-one)"
     PRICE_HISTORY ||--o{ SIGNAL_PERFORMANCE : "supplies prices"
+    GRAPH_NODES ||--o{ GRAPH_EDGES : "defines source/target"
+    GRAPH_NODES ||--o{ IMPACT_SIGNALS : "supplies tickers"
+    OPTIONS_CHAIN ||--o{ OPTIONS_SUMMARY : "rolls up to"
+    OPTIONS_SUMMARY ||--o{ EVENT_SIGNALS : "boosts/penalizes"
 ```,StartLine:163,TargetContent:
 ```
 

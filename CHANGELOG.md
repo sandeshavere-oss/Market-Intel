@@ -5,6 +5,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [4.0.0] - 2026-06-13
+
+### Added
+*   **[MARKET_INTEL_V4_IMPACT_ENGINE_REPORT.md](file:///D:/MARKET_INTEL/DOCUMENTATION/MARKET_INTEL_V4_IMPACT_ENGINE_REPORT.md)**: Master Change Report detailing the Market Impact Propagation Engine.
+*   **[impact_engine.py](file:///D:/MARKET_INTEL/scripts/news_engine/impact_engine.py)**: Core multi-order propagation and direction-flipping traversal logic.
+*   **[impact_schema_migration.py](file:///D:/MARKET_INTEL/scripts/news_engine/impact_schema_migration.py)**: Seeding and schema definitions for the Knowledge Graph.
+*   **[options_schema_migration.py](file:///D:/MARKET_INTEL/scripts/price_engine/options_schema_migration.py)**: Schema layout for F&O option chain tables.
+*   **[options_chain_scraper.py](file:///D:/MARKET_INTEL/scripts/price_engine/options_chain_scraper.py)**: Bypasses NSE anti-bot systems to scrape Option Chains via API v3.
+*   **[compute_greeks.py](file:///D:/MARKET_INTEL/scripts/price_engine/compute_greeks.py)**: Black-Scholes Greeks (Delta, Gamma, Vega, Theta) and IV Percentile calculators.
+*   **[backtest_signals_v2_1.py](file:///D:/MARKET_INTEL/scripts/price_engine/backtest_signals_v2_1.py)**: Options-rebalanced scoring v2.1 backtester over 83 signals.
+
+### Changed
+*   **Signal Scoring Engine (v2.1)**: Rebalanced weights to integrate a 10% Options Positioning Factor and pre-event IV Reversal Penalty (Vega crush protection).
+
+## [3.1.0] - 2026-06-10
+
+### Added
+*   **[SIGNAL_EXPANSION_IMPACT_REPORT.md](file:///D:/MARKET_INTEL/docs/SIGNAL_EXPANSION_IMPACT_REPORT.md)**: Simulation model and ROI ranking for signal coverage opportunities.
+*   **[POST_EXPANSION_SIGNAL_AUDIT.md](file:///D:/MARKET_INTEL/docs/POST_EXPANSION_SIGNAL_AUDIT.md)**: Audit of post-expansion performance metrics and validation results.
+
+### Changed
+*   **[run_historical_signals.py](file:///D:/MARKET_INTEL/scratch/run_historical_signals.py)**: Fixed paths and imports to point to `scripts/news_engine`.
+
 ## [3.0.0] - 2026-06-10
 
 ### Added
